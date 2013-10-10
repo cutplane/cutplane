@@ -1,0 +1,302 @@
+controls.c:1069:  if (state->roomroty == 0)
+controls.c:1075:    if (state->roomrotx < 0)
+controls.c:1083:    minangle = -sign(state->roomrotx)*90.0 + (float) state->roomroty/10.0;
+controls.c:1084:    fraction = -((float) state->roomrotx)/900.0;
+controls.c:1180:  addpos3d(state->cursor,cursor_move,projected_cursor_pos);
+cplib.c:438:  scribble = make_obj(working_world,state->cursor);
+cplib.c:588:			   state->cursor, cutpt2, &dummyt,global_picksize);
+cplib.c:616:			   state->cursor,
+cplib.c:647:	pt2 = state->cursor;
+cplib.c:671:  zoom_world(working_world,state->cursor,zoom_amt);
+cplib.c:773:  diffpos3d(tool_obj->groupbbox.mincorner,state->cursor,
+cplib.c:1127:  testpt = state->cursor;
+cplib.c:1560:	  diffpos3d(state->cursor,thisevf->le1->facevert->pos,
+cplib.c:1575:	  diffpos3d(state->cursor,thisevf->le2->facevert->pos,
+cplib.c:2583:      copypos3d(state->cursor,lens_centerpt);
+cplib.c:2637:      make_vanilla_matrix(state->roomrotx,state->roomroty);
+cplib.c:2701:    ((compare(Fabs(state->cursor[vx]),Maxcrossx,5.0) == 0) ||
+cplib.c:2702:      (compare(Fabs(state->cursor[vy]),Maxcrossy,5.0) == 0));
+cplops.c:251:/* Assumption here hack!!!! section_z is passed as the state->cursor[vz] */
+cplops.c:1828:      addpos3d(state->cursor,actualoffset,state->cursor);
+cplops.c:2041:      pt1 = state->cursor;
+cplops.c:2060:      pt2 = state->cursor;
+cplops.c:2219:	  diffpos3d(state->cursor,get_first_vert(snapfeature),snapvec);
+cplops.c:2222:	  addpos3d(state->cursor,actualoffset,state->cursor);
+cplops.c:2235:	addpos3d(state->cursor,actualoffset,state->cursor);
+cplops.c:2259:	    copypos3d(state->cursor,snap_pos);
+cplops.c:2263:	    snap_pos[vz] = state->cursor[vz];
+cplops.c:2310:      if ((sectionline_in_3dbbox(motherobj2, &(testbbox), state->cursor[vz])) ||
+geometry.c:1073:    if (point_in_2dbbox(state->cursor, &(thisring->ringbbox)))
+geometry.c:1086:	    pt1[vz] = state->cursor[vz];
+geometry.c:1094:	    pt2[vz] = state->cursor[vz];
+geometry.c:1096:	  numsegs += int_ray_edge(pt1,pt2,state->cursor,vx,vy);
+grafx.c:658:  glTranslatef(0.0, 0.0, state->cursor[vz]-2.0);
+grafx.c:813:  if (state->cursor[vz] != oldstate->cursor[vz])
+grafx.c:822:      glTranslatef(0.0, 0.0, state->cursor[vz]-2.0);
+grafx.c:832:      glTranslatef(0.0, 0.0, state->cursor[vz]+5.0);
+grafx.c:842:      glTranslatef(0.0, 0.0, state->cursor[vz]+2.0);
+grafx.c:847:  if ((state->roomrotx != oldstate->roomrotx) ||
+grafx.c:848:      (state->roomroty != oldstate->roomroty))
+grafx.c:850:    oldstate->roomrotx = state->roomrotx;
+grafx.c:851:    oldstate->roomroty = state->roomroty;
+grafx.c:936:  if (state->roomrotx > -250)
+grafx.c:2471:  leftside = (state->roomroty < 0);
+grafx.c:2690:  if ( (state->cursor[vz] < scalebbox->groupbbox.mincorner[vz] - BBoxoutdent) ||
+grafx.c:2691:      (state->cursor[vz] > scalebbox->groupbbox.maxcorner[vz] + BBoxoutdent))
+grafx.c:2695:	   scalebbox->groupbbox.mincorner[vy],state->cursor[vz]+5.0);
+grafx.c:2697:	   scalebbox->groupbbox.maxcorner[vy],state->cursor[vz]+5.0);
+grafx.c:2698:  if ((compare(state->cursor[vz],
+grafx.c:2700:      (compare(state->cursor[vz],
+grafx.c:2708:  if (pt_near_pt(cornersquare,state->cursor,Pkboxsize))
+grafx.c:2714:  if (pt_near_pt(cornersquare,state->cursor,Pkboxsize))
+grafx.c:2720:  if (pt_near_pt(cornersquare,state->cursor,Pkboxsize))
+grafx.c:2726:  if (pt_near_pt(cornersquare,state->cursor,Pkboxsize))
+grafx.c:2763:    else if (compare(state->cursor[vz],thisvfe->pos[vz],Pkboxsize/2.0) == 0)
+grafx.c:2832:  if ( (state->cursor[vz] < thisobj->groupbbox.mincorner[vz] - BBoxoutdent) ||
+grafx.c:2833:      (state->cursor[vz] > thisobj->groupbbox.maxcorner[vz] + BBoxoutdent) ||
+grafx.c:2839:	   thisobj->groupbbox.mincorner[vy] - BBoxoutdent,state->cursor[vz]);
+grafx.c:2841:	   thisobj->groupbbox.maxcorner[vy] + BBoxoutdent,state->cursor[vz]);
+grafx.c:2842:  if ((compare(state->cursor[vz],
+grafx.c:2844:      (compare(state->cursor[vz],
+grafx.c:2852:  if (pt_near_pt(cornersquare,state->cursor,Pkboxsize))
+grafx.c:2858:  if (pt_near_pt(cornersquare,state->cursor,Pkboxsize))
+grafx.c:2864:  if (pt_near_pt(cornersquare,state->cursor,Pkboxsize))
+grafx.c:2870:  if (pt_near_pt(cornersquare,state->cursor,Pkboxsize))
+grafx_converted_2.c:916:  if (state->cursor[vz] != oldstate->cursor[vz])
+grafx_converted_2.c:925:      glTranslatef(0.0, 0.0, state->cursor[vz]-2.0);
+grafx_converted_2.c:935:      glTranslatef(0.0, 0.0, state->cursor[vz]+5.0);
+grafx_converted_2.c:945:      glTranslatef(0.0, 0.0, state->cursor[vz]+2.0);
+grafx_converted_2.c:949:  if ((state->roomrotx != oldstate->roomrotx) ||
+grafx_converted_2.c:950:      (state->roomroty != oldstate->roomroty))
+grafx_converted_2.c:952:    oldstate->roomrotx = state->roomrotx;
+grafx_converted_2.c:953:    oldstate->roomroty = state->roomroty;
+grafx_converted_2.c:1048:  if (state->roomrotx > -250)
+grafx_converted_2.c:2563:  leftside = (state->roomroty < 0);
+grafx_converted_2.c:2770:  if ( (state->cursor[vz] < scalebbox->groupbbox.mincorner[vz] - BBoxoutdent) ||
+grafx_converted_2.c:2771:      (state->cursor[vz] > scalebbox->groupbbox.maxcorner[vz] + BBoxoutdent))
+grafx_converted_2.c:2775:	   scalebbox->groupbbox.mincorner[vy],state->cursor[vz]+5.0);
+grafx_converted_2.c:2777:	   scalebbox->groupbbox.maxcorner[vy],state->cursor[vz]+5.0);
+grafx_converted_2.c:2778:  if ((compare(state->cursor[vz],
+grafx_converted_2.c:2780:      (compare(state->cursor[vz],
+grafx_converted_2.c:2788:  if (pt_near_pt(cornersquare,state->cursor,Pkboxsize))
+grafx_converted_2.c:2794:  if (pt_near_pt(cornersquare,state->cursor,Pkboxsize))
+grafx_converted_2.c:2800:  if (pt_near_pt(cornersquare,state->cursor,Pkboxsize))
+grafx_converted_2.c:2806:  if (pt_near_pt(cornersquare,state->cursor,Pkboxsize))
+grafx_converted_2.c:2843:    else if (compare(state->cursor[vz],thisvfe->pos[vz],Pkboxsize/2.0) == 0)
+grafx_converted_2.c:2912:  if ( (state->cursor[vz] < thisobj->groupbbox.mincorner[vz] - BBoxoutdent) ||
+grafx_converted_2.c:2913:      (state->cursor[vz] > thisobj->groupbbox.maxcorner[vz] + BBoxoutdent) ||
+grafx_converted_2.c:2919:	   thisobj->groupbbox.mincorner[vy] - BBoxoutdent,state->cursor[vz]);
+grafx_converted_2.c:2921:	   thisobj->groupbbox.maxcorner[vy] + BBoxoutdent,state->cursor[vz]);
+grafx_converted_2.c:2922:  if ((compare(state->cursor[vz],
+grafx_converted_2.c:2924:      (compare(state->cursor[vz],
+grafx_converted_2.c:2932:  if (pt_near_pt(cornersquare,state->cursor,Pkboxsize))
+grafx_converted_2.c:2938:  if (pt_near_pt(cornersquare,state->cursor,Pkboxsize))
+grafx_converted_2.c:2944:  if (pt_near_pt(cornersquare,state->cursor,Pkboxsize))
+grafx_converted_2.c:2950:  if (pt_near_pt(cornersquare,state->cursor,Pkboxsize))
+grafx_converted_2.c:4023:    line_intersect_plane_3d(pt1,pt2,z_axis,-state->cursor[vz],
+grafx_converted_2.c:4095:    corners[i][vz] = state->cursor[vz];
+grafx_converted_2.c:4402:  sprintf (infoline,"X: %f",state->cursor[vx]);
+grafx_converted_2.c:4407:  sprintf (infoline,"Y: %f",state->cursor[vy]);
+grafx_converted_2.c:4412:  sprintf (infoline,"Z: %f",state->cursor[vz]);
+grafx_converted_2.c:4434:  pos[vz] = state->cursor[vz]+10.0;
+init.c:301:  state->delroomrot = oldstate->delroomrot = Slowrot;
+init.c:302:  state->roomrotx = oldstate->roomrotx = 0;
+init.c:303:  state->roomroty = oldstate->roomroty = 0;
+init.c:304:  state->controlbuttonsdown = Nocontrolbuttonsbit;
+intersect.c:151:    thisevf->cutype = set_evf_cutpt(thisevf,state->cursor[vz]);
+intersect.c:174:      thisevf->cutype = set_evf_cutpt(thisevf,state->cursor[vz]);
+intersect.c:597:	   state->cursor[vz]-Cutplanebboxmargin);
+intersect.c:599:	   state->cursor[vz]+Cutplanebboxmargin);
+intersect.c:601:	   oldstate->cursor[vz]-Cutplanebboxmargin);
+intersect.c:603:	   oldstate->cursor[vz]+Cutplanebboxmargin);
+mirror.c:45:  setpos3d(planeoffset,0.0,0.0,state->cursor[vz]);
+pencilsketch.c:892:  copypos3d(state->cursor,newdrawpt);
+pencilsketch.c:925:    glVertex3f(state->cursor[vx], state->cursor[vy], state->cursor[vz]);
+pencilsketch.c:1160:  newpt[vx] = state->cursor[vx]; /* new point we might draw to */
+pencilsketch.c:1161:  newpt[vy] = state->cursor[vy];
+pencilsketch.c:1162:  newpt[vz] = state->cursor[vz];
+polhemus.c:236:  glRotatef(polhemustate->orient[vx], ('z')=='x'||('z')=='X', ('z')=='y'||('z')=='Y', ('z')=='z'||('z')=='Z'); /* yaw   */
+polhemus.c:238:  glRotatef(polhemustate->orient[vy], ('y')=='x'||('y')=='X', ('y')=='y'||('y')=='Y', ('y')=='z'||('y')=='Z'); /* pitch */
+polhemus.c:240:  glRotatef(polhemustate->orient[vz], ('x')=='x'||('x')=='X', ('x')=='y'||('x')=='Y', ('x')=='z'||('x')=='Z'); /* roll  */
+polhemus.c:310:  copy_matrix(polhemustate->xform,oldxform);
+polhemus.c:311:  copy_matrix(polhemustate->invxform,oldinvxform);
+polhemus.c:316:  glTranslatef(polhemustate->pos[vx], polhemustate->pos[vy], polhemustate->pos[vz]);
+polhemus.c:318:  glRotatef(polhemustate->orient[vx], ('z')=='x'||('z')=='X', ('z')=='y'||('z')=='Y', ('z')=='z'||('z')=='Z'); /* yaw   */
+polhemus.c:320:  glRotatef(polhemustate->orient[vy], ('y')=='x'||('y')=='X', ('y')=='y'||('y')=='Y', ('y')=='z'||('y')=='Z'); /* pitch */
+polhemus.c:322:  glRotatef(polhemustate->orient[vz], ('x')=='x'||('x')=='X', ('x')=='y'||('x')=='Y', ('x')=='z'||('x')=='Z'); /* roll  */
+polhemus.c:327:  glGetFloatv(GL_MODELVIEW_MATRIX, polhemustate->xform);
+polhemus.c:332:  glRotatef(-polhemustate->orient[vz], ('x')=='x'||('x')=='X', ('x')=='y'||('x')=='Y', ('x')=='z'||('x')=='Z'); /* roll  */
+polhemus.c:334:  glRotatef(-polhemustate->orient[vy], ('y')=='x'||('y')=='X', ('y')=='y'||('y')=='Y', ('y')=='z'||('y')=='Z'); /* pitch */
+polhemus.c:336:  glRotatef(-polhemustate->orient[vx], ('z')=='x'||('z')=='X', ('z')=='y'||('z')=='Y', ('z')=='z'||('z')=='Z'); /* yaw   */
+polhemus.c:337:  glTranslatef(-polhemustate->pos[vx], 	    -polhemustate->pos[vy], 	    -polhemustate->pos[vz]);
+polhemus.c:342:  glGetFloatv(GL_MODELVIEW_MATRIX, polhemustate->invxform);
+polhemus.c:346:  glMultMatrixf(polhemustate->xform);
+polhemus.c:351:  glGetFloatv(GL_MODELVIEW_MATRIX, polhemustate->deltaxform);
+polhemus.c:354:  glLoadMatrixf(polhemustate->invxform);
+polhemus.c:360:  glGetFloatv(GL_MODELVIEW_MATRIX, polhemustate->invdeltaxform);
+polhemus.c:376:  glMultMatrixf(polhemustate->deltaxform);
+polhemus.c:382:  glGetFloatv(GL_MODELVIEW_MATRIX, polhemustate->deltaxform_world);
+polhemus.c:385:  glMultMatrixf(polhemustate->invdeltaxform);
+polhemus.c:391:  glGetFloatv(GL_MODELVIEW_MATRIX, polhemustate->invdeltaxform_world);
+polhemus.c:401:  glGetFloatv(GL_MODELVIEW_MATRIX, polhemustate->oldxform_world);
+polhemus.c:404:  multmatrix_4x4(polhemustate->deltaxform,polhemustate->invdeltaxform,
+polhemus.c:422:  diffpos3d(polhemustate->pos,newpolhvals.pos,deltapos);
+polhemus.c:423:  diffpos3d(polhemustate->orient,newpolhvals.orient,deltaorient);
+polhemus.c:429:    copypos3d(newpolhvals.pos,polhemustate->pos);
+polhemus.c:430:    copypos3d(deltapos,polhemustate->deltapos);
+polhemus.c:434:    copypos3d(newpolhvals.orient,polhemustate->orient);
+polhemus.c:435:    copypos3d(deltaorient,polhemustate->deltaorient);
+polhemus.c:442:	 polhemustate->pos[vx],polhemustate->pos[vy],polhemustate->pos[vz],
+polhemus.c:443:	 polhemustate->orient[vx],
+polhemus.c:444:	 polhemustate->orient[vy],
+polhemus.c:445:	 polhemustate->orient[vz]);
+polhemus.c:447:  printmatrix(polhemustate->xform);
+polhemus.c:449:  printmatrix(polhemustate->deltaxform);
+polhemus.c:489:    copypos3d(polhvals.pos,polhemustate->pos);
+polhemus.c:490:    copypos3d(polhvals.orient,polhemustate->orient);
+polhemus.c:493:    copy_matrix(imatrix,polhemustate->deltaxform);
+polhemus.c:494:    copy_matrix(imatrix,polhemustate->invdeltaxform);
+polhemus.c:498:    glTranslatef(polhemustate->pos[vx], polhemustate->pos[vy], polhemustate->pos[vz]);
+polhemus.c:500:    glRotatef(polhemustate->orient[vx], ('z')=='x'||('z')=='X', ('z')=='y'||('z')=='Y', ('z')=='z'||('z')=='Z'); /* yaw   */
+polhemus.c:502:    glRotatef(polhemustate->orient[vy], ('y')=='x'||('y')=='X', ('y')=='y'||('y')=='Y', ('y')=='z'||('y')=='Z'); /* pitch */
+polhemus.c:504:    glRotatef(polhemustate->orient[vz], ('x')=='x'||('x')=='X', ('x')=='y'||('x')=='Y', ('x')=='z'||('x')=='Z'); /* roll  */
+polhemus.c:509:    glGetFloatv(GL_MODELVIEW_MATRIX, polhemustate->xform);
+polhemus.c:512:    glMultMatrixf(polhemustate->xform); /* polhemus base to sensor */
+polhemus.c:517:    glGetFloatv(GL_MODELVIEW_MATRIX, polhemustate->oldxform_world); /* 3form to sensor */
+polhemus.c:521:    glRotatef(-polhemustate->orient[vz], ('x')=='x'||('x')=='X', ('x')=='y'||('x')=='Y', ('x')=='z'||('x')=='Z'); /* roll  */
+polhemus.c:523:    glRotatef(-polhemustate->orient[vy], ('y')=='x'||('y')=='X', ('y')=='y'||('y')=='Y', ('y')=='z'||('y')=='Z'); /* pitch */
+polhemus.c:525:    glRotatef(-polhemustate->orient[vx], ('z')=='x'||('z')=='X', ('z')=='y'||('z')=='Y', ('z')=='z'||('z')=='Z'); /* yaw   */
+polhemus.c:526:    glTranslatef(-polhemustate->pos[vx], 	      -polhemustate->pos[vy], 	      -polhemustate->pos[vz]);
+polhemus.c:531:    glGetFloatv(GL_MODELVIEW_MATRIX, polhemustate->invxform);
+polhemus.c:566:  deltax  = (int) polhemustate->deltapos[vz];
+polhemus.c:567:  deltay  = (int) -polhemustate->deltapos[vx];
+polhemus.c:585:  cursormove[vx] = -polhemustate->deltapos[vx];
+polhemus.c:586:  cursormove[vy] = -polhemustate->deltapos[vz];
+polhemus.c:587:  cursormove[vz] = -polhemustate->deltapos[vy];
+polhemus.c:594:  glRotatef(.1*(-state->roomrotx), ('x')=='x'||('x')=='X', ('x')=='y'||('x')=='Y', ('x')=='z'||('x')=='Z');
+polhemus.c:596:  glRotatef(.1*(-state->roomroty), ('y')=='x'||('y')=='X', ('y')=='y'||('y')=='Y', ('y')=='z'||('y')=='Z');
+rotateobj.c:346:  rightbut = state->controlbuttonsdown & Rbuttonbit;
+rotateobj.c:347:  oldrightbut = oldstate->controlbuttonsdown & Rbuttonbit;
+rotateobj.c:366:  delrot[vx] = -(state->shellrotx - oldstate->shellrotx);
+rotateobj.c:367:  delrot[vy] = (state->shellroty - oldstate->shellroty);
+rotateobj.c:395:  mousevec[vx] = (float) (state->mousex - oldstate->mousex);
+rotateobj.c:396:  mousevec[vy] = (float) (state->mousey - oldstate->mousey);
+rotateobj.c:441:      copypos3d(state->cursor,rotpt);
+rotatetool.c:300:  addpos3d(state->cursor,transoffset,newpos);
+rotatetool.c:313:      diffpos3d(state->cursor,pt1,transoffset);
+rotatetool.c:319:      diffpos3d(state->cursor,pt2,transoffset);
+rotatetool.c:566:      addpos3d(state->cursor,transoffset,newpos);
+rotatetool.c:592:      diffpos3d(state->cursor,truenewpos,transoffset);
+select.c:61:    if (pt_near_pt(state->cursor,vertpos,global_picksize))
+select.c:72:    if (pt_near_pt(state->cursor,vertpos,global_picksize))
+select.c:93:    if (pt_near_line(thisegment->pt[0],thisegment->pt[1],state->cursor,
+select.c:106:	(pt_near_pt(state->cursor,thisegment->pt[0],global_picksize)))
+select.c:115:	(pt_near_pt(state->cursor,thisegment->pt[1],global_picksize)))
+select.c:138:    if (pt_near_line(thisegment->pt[0],thisegment->pt[1],state->cursor,
+select.c:161:    if (point_in_2dbbox(state->cursor,&(thisegment->segbbox)))
+select.c:164:      if (pt_in_face(inplanefve,state->cursor))
+select.c:167:	copypos3d(state->cursor,thiselect->nearestpos);
+select.c:206:    if (point_in_2dbbox(state->cursor,&selectbbox))
+select.c:225:    if (point_in_2dbbox(state->cursor,&(thisring->ringbbox)))
+select.c:235:	  pt1[vz] = state->cursor[vz];
+select.c:236:	  pt2[vz] = state->cursor[vz];
+select.c:239:	  if (pt1[vy] == state->cursor[vy])
+select.c:241:	    if (pt2[vy] > state->cursor[vy])
+select.c:242:	      numsegs += int_ray_edge(pt1,pt2,state->cursor,vx,vy);
+select.c:244:	  else if (pt2[vy] == state->cursor[vy])
+select.c:246:	    if (pt2[vy] > state->cursor[vy])
+select.c:247:	      numsegs += int_ray_edge(pt1,pt2,state->cursor,vx,vy);
+select.c:250:	    numsegs += int_ray_edge(pt1,pt2,state->cursor,vx,vy);
+select.c:372:	copypos3d(state->cursor,foundselect->nearestpos);
+select.c:579:  diffpos3d(oldstate->cursor,state->cursor,changevec);
+select.c:591:    state->cursor[vx] - 2.0 * oldstate->cursor[vx] + previouscursor[vx];
+select.c:593:    state->cursor[vy] - 2.0 * oldstate->cursor[vy] + previouscursor[vy];
+select.c:595:    state->cursor[vz] - 2.0 * oldstate->cursor[vz] + previouscursor[vz];
+select.c:596:  copypos3d(oldstate->cursor,previouscursor);
+select.c:608:  accelval = state->cursor[vz] - 2.0 * oldstate->cursor[vz] + previouscursor[vz];
+select.c:609:  copypos3d(oldstate->cursor,previouscursor);
+select.c:630:    cursor_dist = distance2(oldstate->cursor,state->cursor);
+select.c:684:  cursor_to_circle = distance2(centerpt,state->cursor);
+select.c:741:  if ((pt_near_pt_3d(state->cursor,pt1,Baublesize)) &&
+select.c:763:  else if ((pt_near_pt_3d(state->cursor,pt2,Baublesize)) &&
+select.c:784:  else if ((pt_near_lineseg_3d(pt1,pt2,state->cursor,nearpt,
+select.c:822:    cursor_to_circle = distance2(centerpt,state->cursor);
+select.c:830:      diffpos3d(centerpt,state->cursor,nearvec);
+select.c:865:  if (point_in_3dbbox(state->cursor,&toolpadbbox))
+select.c:872:      copypos3d(state->cursor,toolpad->selectable_feature.nearestpos);
+select.c:906:  if (point_in_3dbbox(state->cursor,&headpadbbox))
+select.c:913:      copypos3d(state->cursor,headpad->selectable_feature.nearestpos);
+select.c:945:  if (point_in_3dbbox(state->cursor,&normalpadbbox))
+select.c:952:      copypos3d(state->cursor,normalpad->selectable_feature.nearestpos);
+select.c:994:    if (pt_near_pt(thisvfe->pos,state->cursor,Pkboxsize))
+select.c:1008:	if (pt_near_pt(thisevf->cutpt,state->cursor,Pkboxsize))
+shade.c:240:	  (compare(-thisfve->planedist,state->cursor[vz],Tolerance) == 0))
+shade.c:243:	glTranslatef(0.0, 0.0, (Fabs(state->cursor[vz]+thisfve->planedist)+1.0));
+slice.c:38:  diff = thisvfe->pos[vz] - state->cursor[vz];
+storage_cutplane.c:221:  diffpos3d(First_obj_vfe(toolbar)->pos,state->cursor,offset);
+storage_cutplane.c:233:  diffpos3d(First_obj_vfe(toolbar)->pos,state->cursor,offset);
+update.c:136:    copypos3d(state->cursor,prevcursor);
+update.c:139:    newcursor[vx] = enforce_flimits(state->cursor[vx] + delta[vx],
+update.c:141:    newcursor[vy] = enforce_flimits(state->cursor[vy] + delta[vy],
+update.c:143:    newcursor[vz] = enforce_flimits(state->cursor[vz] + delta[vz],
+update.c:151:    copypos3d(state->cursor,prevcursor);
+update.c:154:    newcursor[vx] = state->cursor[vx] + delta[vx];
+update.c:155:    newcursor[vy] = state->cursor[vy] + delta[vy];
+update.c:156:    newcursor[vz] = state->cursor[vz] + delta[vz];
+update.c:177:  if ((state->cursor[vx] != oldx) ||
+update.c:178:      (state->cursor[vy] != oldy) || (state->cursor[vz] != oldz))
+update.c:181:    oldx = state->cursor[vx];
+update.c:182:    oldy = state->cursor[vy];
+update.c:183:    oldz = state->cursor[vz];
+update.c:198:  state->roomrotx = enforce_ilimits(state->roomrotx + xamount,
+update.c:200:  state->roomroty = enforce_ilimits(state->roomroty + yamount,
+update.c:203:  make_vanilla_matrix(state->roomrotx,state->roomroty); 
+update.c:215:    copypos3d(state->cursor,drag_origin);
+update.c:247:    diffpos3d(drag_origin,state->cursor,extra_offset);
+update.c:891:  setpos3d(horizbbox.mincorner,Mincrossx,state->cursor[vy], state->cursor[vz]);
+update.c:892:  setpos3d(horizbbox.maxcorner,Maxcrossx,state->cursor[vy],state->cursor[vz]);
+update.c:895:  setpos3d(vertbbox.mincorner,state->cursor[vx],Mincrossy, state->cursor[vz]);
+update.c:896:  setpos3d(vertbbox.maxcorner,state->cursor[vx],Maxcrossy, state->cursor[vz]);
+update.c:899:  setpos3d(vertbbox.mincorner,state->cursor[vx]-mywidth,
+update.c:900:	   state->cursor[vy]-mywidth, state->cursor[vz]);
+update.c:901:  setpos3d(vertbbox.maxcorner,state->cursor[vx]+mywidth,
+update.c:902:	   state->cursor[vy]+mywidth, state->cursor[vz]);
+update.c:909:	   state->cursor[vy]-ticksize, state->cursor[vz]);
+update.c:911:	   state->cursor[vy]+ticksize, state->cursor[vz]);
+update.c:913:  setpos3d(vertbbox.mincorner, state->cursor[vx]-ticksize,
+update.c:914:	   Maxcrossy-ticksize,state->cursor[vz]);
+update.c:915:  setpos3d(vertbbox.maxcorner, state->cursor[vx]+ticksize, Maxcrossy,
+update.c:916:	   state->cursor[vz]);
+update.c:933:	     Mincrossy - Pickedcontouroffset, state->cursor[vz]);
+update.c:935:	     state->cursor[vz]);
+update.c:940:	     Mincrossy - Pickedcontouroffset, state->cursor[vz]);
+update.c:942:	     Maxcrossy + Pickedcontouroffset, state->cursor[vz]);
+update.c:947:	     Mincrossy - Pickedcontouroffset, state->cursor[vz]);
+update.c:949:	     Mincrossy - Pickedcontouroffset, state->cursor[vz]);
+update.c:954:	     Maxcrossy, state->cursor[vz]);
+update.c:956:	     Maxcrossy + Pickedcontouroffset, state->cursor[vz]);
+update.c:963:    setpos3d(cutplanebbox.mincorner,Mincrossx, Mincrossy, state->cursor[vz]);
+update.c:964:    setpos3d(cutplanebbox.maxcorner,Mincrossx, Maxcrossy, state->cursor[vz]);
+update.c:968:    setpos3d(cutplanebbox.mincorner,Maxcrossx, Mincrossy, state->cursor[vz]);
+update.c:969:    setpos3d(cutplanebbox.maxcorner,Maxcrossx, Maxcrossy, state->cursor[vz]);
+update.c:973:    setpos3d(cutplanebbox.mincorner,Mincrossx, Mincrossy, state->cursor[vz]);
+update.c:974:    setpos3d(cutplanebbox.maxcorner,Maxcrossx, Mincrossy, state->cursor[vz]);
+update.c:978:    setpos3d(cutplanebbox.mincorner,Mincrossx, Maxcrossy, state->cursor[vz]);
+update.c:979:    setpos3d(cutplanebbox.maxcorner,Maxcrossx, Maxcrossy, state->cursor[vz]);
+update.c:983:    setpos3d(cutplanebbox.mincorner,Mincrossx,Mincrossy,state->cursor[vz]);
+update.c:984:    setpos3d(cutplanebbox.maxcorner,Maxcrossx,Maxcrossy,state->cursor[vz]);
+update.c:991:	   Mincrossy - Pickedcontouroffset, state->cursor[vz]);
+update.c:993:	   Maxcrossy + Pickedcontouroffset, state->cursor[vz]);
+user.c:54:  return ((fabs(oldstate->cursor[vx] - state->cursor[vx]) < 3) &&
+user.c:55:	  (fabs(oldstate->cursor[vy] - state->cursor[vy]) < 3));
+user.c:69:  if (state->roomroty > Maxroomroty) state->roomroty = Maxroomroty;
+user.c:70:    else if (state->roomroty < Minroomroty) state->roomroty = Minroomroty;
+user.c:71:  if (state->roomrotx > Maxroomrotx) state->roomrotx = Maxroomrotx;
+user.c:72:    else if (state->roomrotx < Minroomrotx) state->roomrotx = Minroomrotx;
+user.c:73:  if (state->cursor[vz] > Maxplanez)
+user.c:74:    state->cursor[vz] = Maxplanez;
+user.c:75:  else if (state->cursor[vz] < Minplanez)
+user.c:76:    state->cursor[vz] = Minplanez;
+user.c:267:    test = Fabs(state->cursor[vz] - ((vfeptr) thisnearpt->sortelem)->pos[vz]);
+user.c:492:  oldplanez = state->cursor[vz];
+user.c:534:    cursor_move[vz] = searchplanez - state->cursor[vz];

@@ -1,0 +1,239 @@
+#!gmake		# Tell emacs it is a -*- Makefile -*-
+
+OBJS= obj/main.o obj/init.o obj/globals.o obj/math3d.o obj/list.o obj/debug.o obj/error.o obj/properties.o obj/color.o obj/grafx.o obj/shade.o obj/text.o obj/cursor.o obj/hershey.o obj/user.o obj/update.o obj/controls.o obj/device.o obj/select.o obj/pick.o obj/topology.o obj/objtree.o obj/boolprep.o obj/boolean.o obj/geometry.o obj/transform.o obj/zoom.o obj/vertex.o obj/intersect.o obj/normals.o obj/translate.o obj/rotateobj.o obj/rotatetool.o obj/arrange.o obj/slice.o obj/deform.o obj/split.o obj/duplicate.o obj/mirror.o obj/scale.o obj/primitives.o obj/tools.o obj/pencilsketch.o obj/storage_cutplane.o obj/psprint.o obj/cplcore.o obj/cplib.o obj/cplops.o obj/cplread.o $(COMPATIBILITYOBJS)
+
+EXTERNSRCS= src/arrange.c src/boolprep.c src/boolean.c src/color.c src/controls.c src/device.cc src/cplcore.c src/cplib.c src/cplops.c src/cplread.c src/cursor.c src/debug.c src/deform.c src/duplicate.c src/geometry.c src/grafx.c src/hershey.c src/init.c src/intersect.c src/list.c src/math3d.c src/mirror.c src/scale.c src/normals.c src/objtree.c src/pencilsketch.c src/pick.c src/primitives.c src/properties.c src/rotateobj.c src/rotatetool.c src/translate.c src/select.c src/shade.c src/slice.c src/storage_cutplane.c src/text.c src/topology.c src/transform.c src/tools.c src/topology.c src/update.c src/user.c src/vertex.c src/zoom.c 
+
+3form: extern.h $(OBJS) $(EXECS)
+	$(CCOMP) $(LINKFLAGS) $(OBJS) $(LIBS) -o 3form
+	@ echo ""
+	@ echo "**** MAKE COMPLETE, O Greatest Master of the Universe!"
+	@ echo ""
+
+extern.h: $(EXTERNSRCS)
+	@ echo "A SOURCE FILE HAS CHANGED, UPDATE ANY EXTERNS IN EXTERN.H\!"
+	@ touch extern.h
+
+#-----------------------------------------------------------------------------#
+# STARTUP/INITIALIZATION ROUTINES                                             #
+#-----------------------------------------------------------------------------#
+
+obj/main.o: src/main.cc include/cutplane.h include/config.h include/globals.h include/init.h include/grafx.h include/update.h $(GL_H) $(DEVICE_H)
+	$(CCOMP) $(CCFLAGS) src/main.cc -o obj/main.o
+
+obj/init.o: src/init.c include/init.h include/cutplane.h include/config.h include/grafx.h include/shade.h $(GL_H) $(DEVICE_H)
+	$(CCOMP) $(CCFLAGS) src/init.c -o obj/init.o
+
+obj/globals.o: src/globals.c include/globals.h include/cutplane.h include/grafx.h include/cpl_cutplane.h include/rotatetool.h include/config.h include/demo.h $(GL_H) $(DEVICE_H)
+	$(CCOMP) $(CCFLAGS) src/globals.c -o obj/globals.o
+
+#test.o: test.c include/cutplane.h include/config.h include/globals.h include/grafx.h include/init.h include/topology.h vertex.h $(GL_H) $(DEVICE_H)
+#	$(CCOMP) $(CCFLAGS) src/test.c
+
+#-----------------------------------------------------------------------------#
+# LOW LEVEL SUPPORT ROUTINES                                                  #
+#-----------------------------------------------------------------------------#
+
+obj/math3d.o: src/math3d.c include/math3d.h include/cutplane.h include/config.h include/globals.h $(GL_H) $(DEVICE_H)
+	$(CCOMP) $(CCFLAGS) src/math3d.c -o obj/math3d.o
+
+obj/list.o: src/list.c include/cutplane.h include/config.h include/boolean.h include/sun.h include/controls.h include/update.h include/tools.h include/primitives.h $(GL_H)
+	$(CCOMP) $(CCFLAGS) src/list.c -o obj/list.o
+
+obj/debug.o: src/debug.c include/debug.h include/cutplane.h include/controls.h include/update.h include/config.h include/globals.h include/vertex.h $(GL_H) $(DEVICE_H)
+	$(CCOMP) $(CCFLAGS) src/debug.c -o obj/debug.o
+
+obj/error.o: src/error.c include/globals.h include/config.h $(GL_H) $(DEVICE_H)
+	$(CCOMP) $(CCFLAGS) src/error.c -o obj/error.o
+
+obj/properties.o: src/properties.c include/cutplane.h include/config.h include/globals.h $(GL_H) $(DEVICE_H)
+	$(CCOMP) $(CCFLAGS) src/properties.c -o obj/properties.o
+
+#-----------------------------------------------------------------------------#
+# GRAPHICS ROUTINES                                                           #
+#-----------------------------------------------------------------------------#
+
+obj/color.o: src/color.c include/color.h include/cutplane.h include/config.h include/globals.h $(GL_H) $(DEVICE_H)
+	$(CCOMP) $(CCFLAGS) src/color.c -o obj/color.o
+
+obj/cursor.o: src/cursor.c include/cursor.h include/color.h include/cutplane.h include/config.h include/globals.h include/demo.h include/cpl_cutplane.h $(GL_H) $(DEVICE_H)
+	$(CCOMP) $(CCFLAGS) src/cursor.c -o obj/cursor.o
+
+obj/grafx.o: src/grafx.c include/grafx.h include/cutplane.h include/config.h include/globals.h include/intersect.h include/rotatetool.h include/select.h include/shade.h include/icons.h include/tools.h include/demo.h $(GL_H) $(DEVICE_H)
+	$(CCOMP) $(CCFLAGS) src/grafx.c -o obj/grafx.o
+
+obj/shade.o: src/shade.c include/shade.h include/cutplane.h include/config.h include/grafx.h include/normals.h include/math3d.h include/vertex.h $(GL_H) $(DEVICE_H)
+	$(CCOMP) $(CCFLAGS) src/shade.c -o obj/shade.o
+
+obj/text.o: src/text.c include/cutplane.h include/config.h include/grafx.h include/text.h $(GL_H) $(DEVICE_H)
+	$(CCOMP) $(CCFLAGS) src/text.c -o obj/text.o
+
+obj/hershey.o: src/hershey.c include/cutplane.h include/config.h include/grafx.h include/text.h $(GL_H) $(DEVICE_H)
+	$(CCOMP) $(CCFLAGS) src/hershey.c -o obj/hershey.o
+
+#-----------------------------------------------------------------------------#
+# USER INPUT ROUTINES                                                         #
+#-----------------------------------------------------------------------------#
+
+obj/user.o: src/user.c include/cutplane.h include/config.h include/globals.h include/grafx.h $(GL_H) $(DEVICE_H)
+	$(CCOMP) $(CCFLAGS) src/user.c -o obj/user.o
+
+# not compiling until i figure out how to implement all this crap.
+obj/controls.o: src/controls.c include/cpl_cutplane.h include/cutplane.h include/controls.h include/update.h include/config.h include/globals.h include/grafx.h include/demo.h $(GL_H) $(DEVICE_H)
+	$(CCOMP) $(CCFLAGS) src/controls.c -o obj/controls.o
+
+obj/device.o: src/device.cc src/device.h
+	g++ $(CCFLAGS) src/device.cc -o obj/device.o
+
+obj/polhemus.o: src/polhemus.c include/cutplane.h include/controls.h include/update.h include/config.h include/globals.h include/grafx.h include/cpl_cutplane.h $(GL_H) $(DEVICE_H)
+	$(CCOMP) $(CCFLAGS) src/polhemus.c -o obj/polhemus.o
+
+obj/glove.o: src/glove.c include/glove.h include/cutplane.h include/controls.h include/update.h include/config.h include/globals.h include/grafx.h include/cpl_cutplane.h $(GL_H) $(DEVICE_H)
+	$(CCOMP) $(CCFLAGS) src/glove.c -o obj/glove.o
+
+obj/update.o: src/update.c include/cutplane.h include/cpl_cutplane.h include/controls.h include/update.h include/config.h include/globals.h include/grafx.h $(GL_H) $(DEVICE_H)
+	$(CCOMP) $(CCFLAGS) src/update.c -o obj/update.o
+
+obj/select.o: src/select.c include/cutplane.h include/config.h include/math3d.h include/grafx.h include/intersect.h include/tools.h include/cursor.h $(GL_H) $(DEVICE_H)
+	$(CCOMP) $(CCFLAGS) src/select.c -o obj/select.o
+
+# ********* redo this one for properties dependencies *********************
+obj/pick.o: src/pick.c include/cutplane.h include/config.h include/pencilsketch.h include/grafx.h include/math3d.h  $(GL_H) $(DEVICE_H)
+	$(CCOMP) $(CCFLAGS) src/pick.c -o obj/pick.o
+
+obj/cplcore.o: src/cplcore.c include/cpl_cutplane.h include/cutplane.h include/config.h $(GL_H) $(DEVICE_H)
+	$(CCOMP) $(CCFLAGS) src/cplcore.c -o obj/cplcore.o
+
+obj/cplib.o: src/cplib.c include/cpl_cutplane.h include/cutplane.h include/config.h include/tools.h include/text.h include/grafx.h include/math3d.h include/primitives.h $(GL_H) $(DEVICE_H)
+	$(CCOMP) $(CCFLAGS) src/cplib.c -o obj/cplib.o
+
+obj/cplops.o: src/cplops.c include/cpl_cutplane.h include/cutplane.h include/config.h include/tools.h include/grafx.h include/select.h include/intersect.h $(GL_H) $(DEVICE_H)
+	$(CCOMP) $(CCFLAGS) src/cplops.c -o obj/cplops.o
+
+obj/cplread.o: src/cplread.c include/cpl_cutplane.h include/cutplane.h include/config.h include/update.h include/boolean.h $(GL_H) $(DEVICE_H)
+	$(CCOMP) $(CCFLAGS) src/cplread.c -o obj/cplread.o
+
+#-----------------------------------------------------------------------------#
+# TOPOLOGY ROUTINES                                                           #
+#-----------------------------------------------------------------------------#
+
+obj/topology.o: src/topology.c include/cutplane.h include/config.h include/globals.h include/math3d.h include/pencilsketch.h include/boolean.h $(GL_H)
+	$(CCOMP) $(CCFLAGS) src/topology.c -o obj/topology.o
+
+obj/objtree.o: src/objtree.c include/cutplane.h include/config.h $(GL_H)
+	$(CCOMP) $(CCFLAGS) src/objtree.c -o obj/objtree.o
+
+obj/boolprep.o: src/boolprep.c include/boolean.h include/topology.h include/cutplane.h include/config.h include/globals.h $(GL_H)
+	$(CCOMP) $(CCFLAGS) src/boolprep.c -o obj/boolprep.o
+
+obj/boolean.o: src/boolean.c include/boolean.h include/topology.h include/cutplane.h include/config.h include/globals.h $(GL_H)
+	$(CCOMP) $(CCFLAGS) src/boolean.c -o obj/boolean.o
+
+
+#-----------------------------------------------------------------------------#
+# GEOMETRY ROUTINES                                                           #
+#-----------------------------------------------------------------------------#
+
+obj/geometry.o: src/geometry.c include/cutplane.h include/config.h include/math3d.h $(GL_H)
+	$(CCOMP) $(CCFLAGS) src/geometry.c -o obj/geometry.o
+
+obj/transform.o: src/transform.c include/cutplane.h include/config.h include/math3d.h $(GL_H)
+	$(CCOMP) $(CCFLAGS) src/transform.c -o obj/transform.o
+
+obj/vertex.o: src/vertex.c include/vertex.h include/cutplane.h include/config.h include/globals.h $(GL_H)
+	$(CCOMP) $(CCFLAGS) src/vertex.c -o obj/vertex.o
+
+obj/intersect.o: src/intersect.c include/intersect.h include/cutplane.h include/config.h $(GL_H)
+	$(CCOMP) $(CCFLAGS) src/intersect.c -o obj/intersect.o
+
+obj/normals.o: src/normals.c include/normals.h include/cutplane.h include/config.h include/math3d.h $(GL_H)
+	$(CCOMP) $(CCFLAGS) src/normals.c -o obj/normals.o
+
+obj/zoom.o: src/zoom.c include/cutplane.h include/config.h include/math3d.h include/primitives.h $(GL_H)
+	$(CCOMP) $(CCFLAGS) src/zoom.c -o obj/zoom.o
+
+#-----------------------------------------------------------------------------#
+# HIGH LEVEL OBJECT MANIPULATION ROUTINES                                     #
+#-----------------------------------------------------------------------------#
+
+obj/translate.o: src/translate.c include/cutplane.h include/update.h include/config.h include/globals.h include/grafx.h $(GL_H) $(DEVICE_H)
+	$(CCOMP) $(CCFLAGS) src/translate.c -o obj/translate.o
+
+obj/rotateobj.o: src/rotateobj.c include/rotateobj.h include/cutplane.h include/update.h include/config.h include/globals.h include/math3d.h  $(GL_H) $(DEVICE_H)
+	$(CCOMP) $(CCFLAGS) src/rotateobj.c -o obj/rotateobj.o
+
+obj/rotatetool.o: src/rotatetool.c include/rotatetool.h include/rotateobj.h include/cutplane.h include/update.h include/config.h include/globals.h include/math3d.h $(GL_H) $(DEVICE_H)
+	$(CCOMP) $(CCFLAGS) src/rotatetool.c -o obj/rotatetool.o
+
+obj/arrange.o: src/arrange.c include/grafx.h include/globals.h include/intersect.h include/cutplane.h
+	$(CCOMP) $(CCFLAGS) src/arrange.c -o obj/arrange.o
+
+#-----------------------------------------------------------------------------#
+# HIGH LEVEL OBJECT MODIFICATION ROUTINES                                     #
+#-----------------------------------------------------------------------------#
+
+obj/slice.o: src/slice.c include/slice.h include/cutplane.h include/config.h include/intersect.h include/math3d.h include/grafx.h $(GL_H)
+	$(CCOMP) $(CCFLAGS) src/slice.c -o obj/slice.o
+
+obj/deform.o: src/deform.c include/deform.h include/cutplane.h include/config.h include/globals.h include/grafx.h include/math3d.h $(GL_H)
+	$(CCOMP) $(CCFLAGS) src/deform.c -o obj/deform.o
+
+#-----------------------------------------------------------------------------#
+# LOW LEVEL OBJECT MODIFICATION ROUTINES                                      #
+#-----------------------------------------------------------------------------#
+
+obj/split.o: src/split.c include/cutplane.h include/config.h $(GL_H)
+	$(CCOMP) $(CCFLAGS) src/split.c -o obj/split.o
+
+#-----------------------------------------------------------------------------#
+# HIGH LEVEL OBJECT CREATION ROUTINES                                         #
+#-----------------------------------------------------------------------------#
+
+obj/duplicate.o: src/duplicate.c include/duplicate.h include/cutplane.h include/config.h include/pencilsketch.h $(GL_H)
+	$(CCOMP) $(CCFLAGS) src/duplicate.c -o obj/duplicate.o
+
+obj/mirror.o: src/mirror.c include/mirror.h include/cutplane.h include/config.h include/pencilsketch.h $(GL_H)
+	$(CCOMP) $(CCFLAGS) src/mirror.c -o obj/mirror.o
+
+obj/scale.o: src/scale.c include/cutplane.h include/config.h $(GL_H)
+	$(CCOMP) $(CCFLAGS) src/scale.c -o obj/scale.o
+
+obj/primitives.o: src/primitives.c include/cutplane.h include/tools.h include/config.h include/primitives.h $(GL_H)
+	$(CCOMP) $(CCFLAGS) src/primitives.c -o obj/primitives.o
+
+obj/tools.o: src/tools.c include/tools.h include/cutplane.h include/config.h include/globals.h include/math3d.h include/init.h include/deform.h include/grafx.h $(GL_H)
+	$(CCOMP) $(CCFLAGS) src/tools.c -o obj/tools.o
+
+#-----------------------------------------------------------------------------#
+# LOW LEVEL OBJECT CREATION ROUTINES                                          #
+#-----------------------------------------------------------------------------#
+
+obj/pencilsketch.o: src/pencilsketch.c include/pencilsketch.h include/cutplane.h include/config.h include/grafx.h include/math3d.h include/pick.h
+	$(CCOMP) $(CCFLAGS) src/pencilsketch.c -o obj/pencilsketch.o
+
+#-----------------------------------------------------------------------------#
+# INPUT/OUTPUT ROUTINES                                                       #
+#-----------------------------------------------------------------------------#
+
+obj/storage_cutplane.o: src/storage_cutplane.c include/storage_cutplane.h include/cutplane.h include/config.h include/math3d.h include/topology.h include/update.h include/cpl_cutplane.h include/primitives.h $(GL_H)
+	$(CCOMP) $(CCFLAGS) src/storage_cutplane.c -o obj/storage_cutplane.o
+
+obj/psprint.o: src/psprint.c include/cutplane.h include/config.h $(GL_H)
+	$(CCOMP) $(CCFLAGS) src/psprint.c -o obj/psprint.o
+
+#-----------------------------------------------------------------------------#
+# INCLUDE/CUTPLANE.H DEPENDENCIES                                             #
+#-----------------------------------------------------------------------------#
+
+include/cutplane.h: include/geometry.h include/list.h include/select.h include/topology.h include/user.h include/properties.h include/boolean.h
+	@ touch include/cutplane.h
+
+#-----------------------------------------------------------------------------#
+# Cleanup targets		                                              #
+#-----------------------------------------------------------------------------#
+
+clean:
+	rm obj/*.o
+
+distclean:
+	rm 3form obj/*.o src/*~ include/*~ cpl/*~ *~

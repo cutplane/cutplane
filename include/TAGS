@@ -1,0 +1,1445 @@
+
+actions.h,2096
+#define actions_includes5,50
+#define Propertyactionsqueue 23,914
+#define Featureactionsqueue 24,945
+#define Usetranslateflags 26,976
+#define Donotusetranslateflags 27,1007
+#define Maxactions 29,1045
+#define Maxinputactionmods 30,1066
+#define Action_type 32,1096
+#define Actionsize 33,1119
+  Nocontrol_act 39,1203
+  Movecrosshair_act,42,1295
+  Startplanemove_act,45,1407
+  Endplanemove_act,46,1479
+  Startrotateobj_act,48,1549
+  Endrotateobj_act,49,1621
+  Startconstraining_act,51,1688
+  Endconstraining_act,52,1758
+  Rotateroom_act,54,1824
+  Zoom_act,56,1888
+  Zoomto_act,58,1994
+  Usezbuffer_act,60,2077
+  Print_act,61,2133
+  Spool_act,63,2185
+  Unspool_act,64,2244
+  Quit_act,66,2312
+  Load_act,69,2384
+  Save_act,70,2444
+  Pick_act,73,2563
+  PickNoUnpick_act,74,2623
+  Release_act,76,2741
+  ReleaseNoUnpick_act,77,2800
+  Drag_act,80,2917
+  Translate_act,82,3023
+  Rotate_act,84,3133
+  Scale_act,86,3238
+  Transform_act,88,3345
+  Measure_act,92,3528
+  Calculatesection_act,94,3580
+  Undo_act,96,3642
+  Redo_act,97,3695
+  Duplicate_act,98,3748
+  Delete_act,99,3810
+  Cut_act,100,3862
+  Paste_act,101,3913
+  Group_act,102,3968
+  Ungroup_act,103,4024
+  Mirror_act,104,4083
+  Slice_act,106,4164
+  Boolean_act,107,4177
+  Activatetool_act,109,4193
+  Docktool_act,110,4247
+  Addproperty_act,112,4295
+  Deleteproperty_act,113,4358
+  Copyproperty_act,114,4423
+  Immediateupdate_act,116,4494
+  Nonimmediateupdate_act,117,4558
+  Maxactionkind118,4584
+} actionkind;119,4600
+  Noactionmod 125,4660
+  Exact 126,4679
+  Relative,128,4765
+  Dragging,130,4851
+  Rotating,132,4958
+  Movingplane,134,5048
+  Constrained,136,5141
+  Doublepick,137,5205
+  Triplepick,139,5301
+  Actsonmother,141,5399
+  Reflexive,143,5465
+  Actsonintersectingobjs,144,5525
+  Actsonlastresults,145,5551
+  Actsonproperty,146,5572
+  Actsonselectables,147,5590
+  Trapsaction,149,5614
+  Maxactionmodkind152,5740
+} actionmodkind;153,5759
+struct actionstruct161,5953
+typedef struct actionstruct actiontype;208,7400
+typedef actiontype *actionptr;actionptr209,7440
+
+boolean.h,1815
+#define boolean_includes5,49
+#define AonB 21,1103
+#define BonA 22,1118
+#define SolidA 23,1133
+#define SolidB 24,1150
+#define Null_le 26,1168
+#define Null_le_twin 27,1217
+#define BOOL_OUT 29,1272
+#define BOOL_IN 30,1340
+#define BOOL_ON 31,1377
+#define BOOL_Union 32,1395
+#define BOOL_Subtraction 33,1416
+#define BOOL_Intersection 34,1443
+#define Onplanetol	36,1472
+ EvfApt1on 42,1643
+ EvfApt2on,43,1659
+ EvfBpt1on,44,1671
+ EvfBpt2on,45,1683
+ Evfsintersect46,1695
+  Sector_type 51,1721
+  Sectorpair_type,52,1741
+  Vv_type,53,1760
+  Vf_type,54,1771
+  Vee_type,55,1782
+  Ef_type,56,1794
+  Facepair_type,57,1805
+  Lepair_type58,1822
+#define Sectorsize 61,1840
+#define Sectorpairsize 62,1878
+#define Vvsize 63,1924
+#define Vfsize 64,1954
+#define Veesize 65,1984
+#define Efsize 66,2016
+#define Facepairsize 67,2046
+#define Lepairsize 68,2088
+struct sectorstruct70,2127
+struct sectorpairstruct85,2696
+struct vvstruct105,3369
+struct vfstruct118,3784
+struct veestruct130,4086
+struct efstruct143,4368
+struct facepairstruct157,4610
+struct lepairstruct169,4843
+typedef struct sectorstruct sectortype;190,5528
+typedef struct sectorpairstruct sectorpairtype;191,5568
+typedef struct vvstruct vvtype;192,5616
+typedef struct vfstruct vftype;193,5648
+typedef struct veestruct veetype;194,5680
+typedef struct efstruct eftype;195,5714
+typedef struct facepairstruct facepairtype;196,5746
+typedef struct lepairstruct lepairtype;197,5790
+typedef sectortype * sectorptr;199,5831
+typedef sectorpairtype * sectorpairptr;200,5863
+typedef vvtype * vvptr;201,5903
+typedef vftype * vfptr;202,5927
+typedef veetype *veeptr;veeptr203,5951
+typedef eftype *efptr;efptr204,5976
+typedef facepairtype * facepairptr;205,5999
+typedef lepairtype * lepairptr;206,6035
+} pair_oninfo_type;212,6136
+
+color.h,165
+#define color_includes5,45
+#define defcolor 20,866
+#define setcolor 23,973
+typedef GLshort colortype[colortype25,1002
+typedef short *colorptr;colorptr26,1032
+
+config.h,456
+#define config_includes5,47
+#define Cos(22,1011
+#define Acos(23,1050
+#define Fabs(24,1091
+#define Sqrt(25,1132
+#define ROOMUPKEY 27,1174
+#define ROOMDOWNKEY 28,1225
+#define ROOMLEFTKEY 29,1271
+#define ROOMRIGHTKEY 30,1317
+#define qbutton 32,1364
+#define unqbutton 33,1388
+#define setbutton(34,1416
+#define replace(35,1448
+#define setvaluator 36,1492
+#define getvaluator 37,1527
+#define malloc_verify(40,1583
+#define tryingnewinputs43,1650
+
+controls.h,3824
+#define controls_includes5,52
+#define Maxvaluatorecs 23,917
+#define Maxtiedbuttons 24,942
+#define Maxtiedvals 25,968
+#define Valhistorydepth 26,1040
+#define Numnonqueud_tiedbuttons 28,1165
+  Oneclick 33,1330
+  Doubleclick,34,1346
+  Tripleclick35,1361
+#define NULLDEV 41,1411
+#define LEFTMOUSE 42,1429
+#define MIDDLEMOUSE 43,1462
+#define RIGHTMOUSE 44,1497
+#define LEFTALTKEY 45,1531
+#define RIGHTALTKEY 46,1557
+#define LEFTCTRLKEY 47,1584
+#define RIGHTCTRLKEY 48,1615
+#define LEFTSHIFTKEY 49,1647
+#define RIGHTSHIFTKEY 50,1677
+#define TABKEY 51,1708
+#define BACKSLASHKEY 52,1730
+#define SPACEKEY 53,1765
+#define AKEY 54,1791
+#define BKEY 55,1809
+#define CKEY 56,1827
+#define DKEY 57,1845
+#define EKEY 58,1863
+#define FKEY 59,1881
+#define GKEY 60,1899
+#define HKEY 61,1917
+#define IKEY 62,1935
+#define JKEY 63,1953
+#define KKEY 64,1971
+#define LKEY 65,1989
+#define MKEY 66,2007
+#define NKEY 67,2025
+#define OKEY 68,2043
+#define PKEY 69,2061
+#define QKEY 70,2079
+#define RKEY 71,2097
+#define SKEY 72,2115
+#define TKEY 73,2133
+#define UKEY 74,2151
+#define VKEY 75,2169
+#define WKEY 76,2187
+#define XKEY 77,2205
+#define YKEY 78,2223
+#define ZKEY 79,2241
+#define F1KEY 80,2259
+#define F2KEY 81,2279
+#define F3KEY 82,2299
+#define F4KEY 83,2319
+#define F5KEY 84,2339
+#define F6KEY 85,2359
+#define F7KEY 86,2379
+#define F8KEY 87,2399
+#define F9KEY 88,2419
+#define PICKBUTTON 98,2611
+#define PLANEMOVEBUTTON 99,2640
+#define OBJECTROTATEBUTTON 100,2690
+#define ROOMROTATEBUTTON1 101,2728
+#define ROOMROTATEBUTTON2 102,2765
+#define ZOOMBUTTON 103,2803
+#define ZTOOLBUTTON 104,2829
+#define PANTOOLBUTTON 105,2854
+#define CONSTRAINBUTTON1 107,2882
+#define CONSTRAINBUTTON2 108,2919
+#define MULTIPLESELECTBUTTON1 109,2957
+#define MULTIPLESELECTBUTTON2 110,3000
+#define LOADBUTTON 112,3045
+#define SAVEBUTTON 113,3069
+#define DUPLICATEBUTTON 114,3093
+#define UNDOBUTTON 115,3122
+#define RTOOLBUTTON 116,3146
+#define MIRRORBUTTON 117,3201
+#define QUITBUTTON 119,3228
+#define DELETEBUTTON 125,3365
+#define CUTBUTTON 126,3399
+#define PASTEBUTTON 127,3422
+#define GROUPBUTTON 128,3447
+#define UNGROUPBUTTON 129,3472
+#define SLICEBUTTON 130,3535
+#define BOOLEANBUTTON 131,3568
+#define ROOMLEFTBUTTON 134,3620
+#define ROOMRIGHTBUTTON 135,3655
+#define ROOMUPBUTTON 136,3692
+#define ROOMDOWNBUTTON 137,3723
+#define ZBUFFERBUTTON 138,3758
+#define DEMOBUTTON 140,3786
+#define SCALEFCNBUTTON 141,3811
+#define PRINTBUTTON 142,3841
+#define SPOOLBUTTON 143,3867
+#define UNSPOOLBUTTON 144,3893
+#define MEASUREBUTTON 145,3921
+#define PLANEJUMPBUTTON 147,3950
+#define Tiedbuttonsize 150,4046
+#define Valuatorecsize 151,4092
+#define Rotateobjenablebit 154,4193
+#define Moveplanenablebit 155,4261
+#define Pickenablebit 156,4328
+#define Roomrotatenablebit 157,4387
+#define Zoomenablebit 158,4458
+#define Constrainenablebit 159,4519
+#define Multipleselectenablebit 160,4591
+#define Allenablebits 161,4667
+#define Pickdisables 164,4754
+#define Moveplanedisables 166,4877
+#define Rotateobjdisables 168,5023
+#define Roomrotatedisables 170,5182
+#define Zoomdisables 172,5296
+#define Constraindisables 174,5396
+#define Multipleselectdisables 176,5506
+#undef Roomrotatebutton180,5646
+#undef Zoombutton183,5695
+  Nobutton 188,5736
+  Pickbutton,189,5752
+  Planemovebutton,190,5766
+  Objectrotatebutton,191,5785
+  Roomrotatebutton,192,5807
+  Zoombutton,193,5827
+  Constrainbutton,194,5841
+  Multipleselectbutton,195,5860
+  Maxtiedbutton196,5884
+} tiedbuttonkind;197,5900
+struct tiedbuttonstruct199,5919
+typedef struct tiedbuttonstruct tiedbuttontype;209,6374
+typedef tiedbuttontype *tiedbuttonptr;tiedbuttonptr210,6422
+struct valuatorecstruct212,6462
+typedef struct valuatorecstruct valuatorectype;222,6745
+#define PC_QUEUE_SIZE 225,6831
+
+cpl_cutplane.h,6586
+#define cpl_includes5,50
+#define Maxopcodes 30,1206
+#define Maxmessagenames 31,1229
+#define Maxmessagelength 32,1258
+#define Maxpropcodeblocsize 33,1286
+#define MaxCroutines 34,1319
+#define MaxCroutinename 35,1345
+#define Maxenvparts 36,1372
+#define Maxicons 37,1395
+#define Maxcodekinds 38,1415
+#define MaxCPLsymbols 40,1439
+#define MaxCPLinelength 41,1466
+#define MaxCPLabelength 42,1494
+#define MaxCPLopcodelength 43,1521
+#define MaxCPLmessagelength 44,1551
+#define MaxCPLsymbolength 45,1582
+#define Maxproplength 46,1612
+#define MaxCPLconstantlength 47,1637
+#define MaxCPLenvpartlength 48,1670
+#define MaxCPLiconlength 49,1701
+#define MaxCPLsymbolsperinst 50,1729
+#define MaxCPLcodekindlength 51,1760
+#define CPL_Stacksize 53,1793
+#define Systemcodeblocsize 54,1818
+#define JSRATcodeblocsize 55,1895
+#define Auxiliaryblocsize 56,1966
+#define CPL_Controlstacksize 58,2044
+#define CPL_Ownerstacksize 59,2124
+#define CPL_Maxpriority 61,2173
+#define Setupiterateregsonly 65,2273
+#define Advanceanditerate 66,2307
+  Self,72,2464
+  Subfeatures,73,2472
+  Mothervfe,74,2487
+  Motherevf,75,2500
+  Motherfve,76,2513
+  Mothershell,77,2526
+  Motherobj,78,2541
+  Motherworld,79,2554
+  Prioritymsg,83,2701
+  Noprioritymsg,84,2716
+  Codeowner,87,2802
+  Quicktranslate,90,2885
+  Normaltranslate,91,2903
+  Boolunion,94,2978
+  Boolsubtract,95,2991
+  Boolintersect,96,3007
+  Origin,99,3064
+  X_axis,100,3074
+  Y_axis,101,3084
+  Z_axis,102,3094
+  Imatrix,103,3104
+  Pickboxsize,104,3115
+  Rotateiconcentersize,105,3130
+  Alphabet,109,3309
+  Numeric,110,3321
+  Alphanumeric,111,3332
+  Asciiset,112,3348
+  Maxconsts114,3409
+} constant_kind;115,3421
+#define CPLauxsize 117,3439
+#define CPLwordsize 118,3484
+  Noargs 126,3763
+  ASarg 127,3777
+  ATarg 128,3790
+  ATarg = ASarg*ASarg128,3790
+  ARarg 129,3809
+  ARarg = ATarg*ATarg129,3809
+  ADarg 130,3828
+  ADarg = ARarg*ARarg130,3828
+  MaxCPLargs131,3847
+} opcode_argkind;132,3860
+  Blank_word 141,4121
+  Opcode_data 142,4176
+  Message_data,143,4232
+  Environment_data,144,4248
+  Icon_data,145,4315
+  CPLptr_data,147,4366
+  CPLhandle_data,148,4430
+  Auxiliary_data,149,4495
+  Featurelist_data,151,4588
+  Proplist_data	152,4655
+} CPLwordkind;153,4720
+  Noaccumulator 161,4977
+  OP_accum,162,4998
+  AS_accum,163,5032
+  AT_accum,164,5066
+  AR_accum,165,5100
+  AD_accum,166,5134
+  A1_accum,168,5167
+  A1_accum,A2_accum,168,5167
+  A1_accum,A2_accum, A3_accum,168,5167
+  A1_accum,A2_accum, A3_accum, A4_accum,168,5167
+  A1_accum,A2_accum, A3_accum, A4_accum, A5_accum,168,5167
+  D1_accum,169,5218
+  D1_accum,D2_accum,169,5218
+  D1_accum,D2_accum, D3_accum,169,5218
+  D1_accum,D2_accum, D3_accum, D4_accum,169,5218
+  D1_accum,D2_accum, D3_accum, D4_accum, D5_accum,169,5218
+  Maxaccumulatorkind171,5270
+} accumulatorkind;172,5291
+  Nothingness 180,5552
+  Crosshair_part,181,5571
+  Cutplane_part,182,5589
+  Room_part,183,5606
+  Universe_part184,5619
+} environmentkind;185,5635
+  Noicon 194,5897
+  Rotateicon,195,5911
+  Planecontrasticon,196,5925
+  Helpicon197,5946
+} iconkind;198,5957
+  Nocodekind 206,6211
+  Private_code,207,6229
+  Property_code,208,6245
+  Maxcodekind209,6262
+} codekind;210,6276
+  NOP 218,6530
+  CPLDATA,220,6542
+  CPLPTR,221,6593
+  CPLHANDLE,222,6652
+  MOVE,223,6713
+  ADD,224,6772
+  CLEAR,225,6805
+  PUSH,226,6864
+  POP,227,6914
+  WIPE,228,6963
+  UNWIPE,229,7016
+  AND,231,7068
+  OR,232,7116
+  NOT,233,7167
+  COUNT,235,7249
+  INDEX,236,7305
+  BEQUAL,238,7357
+  BNEQUAL,239,7417
+  BEMPTY,240,7479
+  BNEMPTY,241,7540
+  BTRUE,242,7596
+  BFALSE,243,7655
+  BWIPED,244,7701
+  OWNER,246,7755
+  SETOWN,247,7814
+  MOTHER,248,7874
+  ANCEST,249,7935
+  DESCEND,250,7996
+  PARENT,252,8080
+  CHLDRN,253,8135
+  SIBLING,254,8191
+  MAKE,257,8317
+  BMSGS,260,8376
+  BNOMSGS,261,8436
+  MAKEMSG,262,8498
+  QMSG,263,8554
+  UNQMSG,264,8611
+  CHKMSG,265,8672
+  JSR,267,8734
+  JSRAT,268,8769
+  RTS,270,8853
+  JUMP,271,8892
+  SETFR,273,8929
+  ENDFR,274,8974
+  CRTN,276,9032
+  TRANS,278,9083
+  ROTATE,279,9092
+  SCALE,280,9102
+  TRNSFRM,281,9111
+  CONCAT,282,9173
+  DIFF3D,283,9234
+  SNAP,284,9295
+  WITHIN,285,9343
+  GETNAME,287,9404
+  SETNAME,288,9457
+  GETLABEL,289,9492
+  SETLABEL,290,9504
+  GETCOLOR,292,9517
+  SETCOLOR,293,9569
+  AUX2STR,295,9622
+  STR2AUX,296,9682
+  HASPROP,298,9743
+  GETPROP,299,9803
+  ADDPROP,300,9854
+  REMPROP,301,9916
+  SELECT,303,9969
+  UNSEL,304,10018
+  PICK,305,10070
+  RELEAS,307,10170
+  UNPICK,308,10219
+  DBLPIC,309,10229
+  MPICK,310,10239
+  MRELEAS,311,10292
+  DUP,313,10367
+  DUPCPL,314,10374
+  CPDELETE,316,10385
+  CPBOOLEAN,318,10424
+  ADOPT,320,10533
+  UNADOPT,321,10542
+  GETLINK,322,10553
+  WTRANS,324,10607
+  WORLD,325,10653
+  UPDATE,327,10715
+  GLUPDATE,328,10771
+  CPSHADE,329,10822
+  CONNECT,331,10834
+  GETCONN,332,10891
+  RECON,334,10954
+  RECOFF,335,10963
+  UPDATEON,337,10974
+  UPDATEOFF,338,10986
+  QUIT,340,11000
+  DEBUG,342,11037
+  DEFPROP,345,11111
+  STARTPROP,346,11170
+  MAX_OPCODEKIND 348,11225
+  MAX_OPCODEKIND = Maxopcodes348,11225
+} opcodekind;349,11255
+typedef long messagekind;356,11497
+  CPLaux_int_data 364,11765
+  CPLaux_long_data,365,11788
+  CPLaux_char_data,366,11808
+  CPLaux_string_data,367,11828
+  CPLaux_float_data,368,11850
+  CPLaux_offset_data,369,11871
+  CPLaux_matrix_data,370,11893
+  CPLaux_boolean_data,371,11915
+  CPLaux_address_data,372,11938
+  CPLaux_color_data,373,11961
+  CPLaux_update_data,374,11982
+  CPLaux_rotate_data,375,12004
+  CPLaux_scale_data,376,12026
+  CPLaux_duplicate_destroy_data,377,12047
+  CPLaux_owner_feature_data,378,12080
+  CPLaux_Croutine_index_data,379,12109
+  CPLaux_update_time_data,380,12139
+  CPLaux_cutplane_shade_data,381,12166
+  CPLaux_codekind_value_data,382,12196
+  CPLaux_new_world_data383,12226
+} auxdatakind;384,12250
+union CPLauxunion393,12545
+typedef union CPLauxunion CPLauxtype;445,13980
+typedef CPLauxtype *CPLauxptr;CPLauxptr446,14018
+struct CPL_word_struct453,14277
+typedef struct CPL_word_struct CPL_word;488,15694
+typedef CPL_word * CPL_word_ptr;489,15735
+typedef CPL_word accumulatortype;492,15810
+struct opcoderecstruct503,16240
+typedef struct opcoderecstruct opcoderec;511,16451
+struct symbolrecstruct514,16495
+typedef struct symbolrecstruct symbolrec;520,16606
+struct Croutinerecstruct522,16649
+typedef struct Croutinerecstruct Croutinerec;528,16745
+struct iteratestruct530,16792
+typedef struct iteratestruct iteraterec;539,17027
+typedef iteraterec *iterateptr;iterateptr540,17068
+
+cursor.h,867
+#define cursor_includes5,47
+#define Basicursordepth 28,1160
+#define Hiddencursorwidth 29,1189
+#define Hiddencursorheight 30,1219
+#define Hiddencursordepth 31,1250
+#define Pluscursorwidth 32,1280
+#define Pluscursorheight 33,1309
+#define Pluscursordepth 34,1350
+#define Arrowcursorsquare 35,1390
+#define Arrowcursorwidth 36,1421
+#define Arrowcursorstemwidth 37,1464
+#define Arrowcursorheight 38,1519
+#define Arrowcursordepth 39,1571
+#define Ibeamcursorwidth 40,1612
+#define Ibeamcursorheight 41,1642
+#define Ibeamcursordepth 42,1673
+#define Xhaircursorwidth 43,1714
+#define Xhaircursorheight 44,1773
+#define Xhaircursordepth 45,1810
+  Hiddencursor 49,1867
+  Pluscursor,50,1938
+  Arrowcursor,51,1952
+  Ibeamcursor,52,1967
+  Xhaircursor,53,1982
+  Maxcursors	54,1997
+} cursorkind;55,2048
+} cursorecordtype,*cursorecordptr;cursorecordptr64,2290
+
+cutplane.h,243
+#define cutplane_includes5,51
+typedef GLfloat Coord;23,1080
+typedef Coord Matrix[Matrix24,1103
+typedef GLint Screencoord;25,1131
+typedef GLboolean Boolean;26,1158
+typedef long Icoord;27,1185
+#define TRUE 30,1220
+#define FALSE 33,1262
+
+debug.h,28
+#define debug_includes5,45
+
+deform.h,164
+#define deform_includes5,47
+#define LATTSIZE 19,920
+#define Ncontrolpts 21,941
+typedef Coord lattsizevec 23,964
+typedef struct xyz25,1003
+} xyzstruct;28,1039
+
+demo.h,133
+#define demo_includes5,43
+  Drawroom 25,915
+  Drawshadows 26,931
+  Drawplane 27,950
+  Drawsections 28,967
+  Maxdrawflag 29,987
+
+duplicate.h,143
+#define duplicate_includes5,53
+#define Userduplicateoffsetx 19,929
+#define Userduplicateoffsety 20,962
+#define Userduplicateoffsetz 21,995
+
+euler.h,140
+#define euler_includes5,45
+#define Outer 19,917
+#define Inner 20,933
+#define Plus 23,972
+#define Minus 24,987
+#define Twin_le(29,1036
+
+extern.h,22
+#define EXTERN_H4,39
+
+geometry.h,2229
+#define geometry_includes5,51
+#define BBox2dsize 24,1159
+#define BBox3dsize 25,1197
+#define Pttopttol 27,1236
+#define Ptonlinetol 28,1307
+#define Ptonplanetol 29,1381
+#define Linetolinetol 30,1457
+#define Planetoplanetol 31,1533
+#define Divzerorange 32,1611
+#define DivzerorangeIRIS 33,1688
+#define Floatol 34,1769
+#define vx 36,1793
+#define vy 37,1806
+#define vz 38,1819
+#define vw 39,1832
+#define divide_by_zero(43,1860
+#define divide_by_zero(46,2018
+#define less_than_tol(49,2081
+  Lineonplane,53,2140
+  Lineparallelsplane,54,2155
+  Lineintersectsplane55,2177
+  Linesegonplane,60,2210
+  Linesegendpt1onplane,61,2228
+  Linesegendpt2onplane,62,2252
+  Linesegintersectsplane,63,2276
+  Linesegoffplane64,2302
+  Lineseginface,69,2331
+  Lineseginfacept1,70,2357
+  Lineseginfacept2,71,2386
+  Linesegintspossible,74,2481
+  Linesegpt1onboundvfe,75,2513
+  Linesegpt1onboundle,76,2546
+  Linesegpt1inface,77,2578
+  Linesegpt2onboundvfe,78,2607
+  Linesegpt2onboundle,79,2640
+  Linesegpt2inface,80,2672
+  Linesegintersectsface,81,2701
+  Linesegintersectsboundvfe,82,2735
+  Linesegintersectsboundle,83,2773
+  Linesegoutsideface	84,2814
+  Linesequal,89,2856
+  Linesdonotintersect,90,2870
+  Linesintersect91,2893
+  Linesegsequal,96,2921
+  Linesegsdonotintersect,97,2938
+  Linesegsintersect98,2964
+  Ptoutsidebound,103,2995
+  Ptinsidebound,104,3013
+  Ptonboundvfe,105,3030
+  Ptonboundle,106,3046
+  Ptnotonbound107,3061
+  Ptoutsideface,112,3087
+  Ptonfaceboundvfe,113,3104
+  Ptonfaceboundle,114,3124
+  Ptinsideface115,3143
+typedef Coord vertype[vertype121,3224
+typedef Coord pos2d[pos2d122,3250
+typedef Coord pos3d[pos3d123,3274
+typedef Coord pos4d[pos4d124,3298
+typedef Screencoord screenpos[screenpos125,3322
+} bboxscreentype,*bboxscreenptr;bboxscreenptr130,3407
+} bbox2dtype,*bbox2dptr;bbox2dptr135,3487
+} bbox3dtype,*bbox3dptr;bbox3dptr140,3561
+#define Leftofbbox 142,3587
+#define Rightofbbox 143,3608
+#define Bottomofbbox 144,3630
+#define Topofbbox 145,3653
+#define Frontofbbox 146,3673
+#define Backofbbox 147,3696
+#define Notclipped 151,3761
+#define Pt0clipped 152,3782
+#define Pt1clipped 153,3803
+#define Bothclipped 154,3824
+#define Maybeclipped 155,3846
+
+globals.h,30
+#define globals_includes5,49
+
+glove.h,811
+#define glove_includes5,46
+  Noglovevent 23,959
+  Glovepointevent,24,978
+  GloveconstraintoXYevent,25,997
+  GloveconstraintoZevent,26,1024
+  Glovepickevent,27,1050
+  GloveXYpickevent,28,1068
+  GloveZpickevent,29,1088
+  Gloveroomrotevent,30,1107
+  Gloverotatevent,31,1128
+  Maxglovevent32,1147
+} gloveventkind;33,1162
+  Gloverelaxstate 37,1195
+  Glovepointstate,38,1218
+  GloveconstraintoXYstate,39,1237
+  GloveconstraintoZstate,40,1264
+  Glovedragstate,41,1290
+  GloveXYdragstate,42,1308
+  GloveZdragstate,43,1328
+  Gloveroomrotstate,44,1347
+  Gloverotatestate,45,1368
+  Maxglovestate46,1388
+} glovestatekind;47,1404
+#define Resetpolhemus 49,1423
+#define Quietmode 50,1450
+#define Noisymode 51,1473
+#define Binarymode 52,1496
+#define Carriagereturn 54,1521
+#define Linefeed 55,1549
+
+grafx.h,2723
+#define grafx_includes5,45
+#define Selectivedraw 23,912
+#define Draweverything 24,940
+#define Starterasebboxnum 25,968
+  Redrawbody 32,1130
+  Redrawfaces 33,1179
+  Redrawshadow 34,1242
+  Redrawsectionline 35,1295
+  Redrawselectables 36,1341
+  Redrawpicked 37,1388
+  Redrawselectbox 38,1431
+  Alwaysdraw 39,1480
+  Neverdraw 40,1534
+#define Cursormargin 44,1655
+#define Normalbboxmargin 48,1780
+#define Shadowbboxmargin 52,1924
+#define BBoxscreensize 54,1954
+#define Eraserecordsize 55,2000
+#define Pickedcontouroffset 58,2083
+#define eyepos 60,2117
+#define Leftbutton 62,2140
+#define Midbutton 63,2169
+#define Rightbutton 64,2199
+#define Roomwidth 66,2231
+#define Roomheight 67,2256
+#define Roomdepth 68,2281
+#define Maxcrossx 69,2306
+#define Mincrossx 70,2328
+#define Maxcrossy 71,2351
+#define Mincrossy 72,2373
+#define Maxplanez 73,2396
+#define Minplanez 74,2418
+#define Filledpkbox 76,2442
+#define Hollowpkbox 77,2467
+#define BBoxoffset 79,2494
+#define BBoxoutdent 80,2518
+#define Crosshairoffsetz 81,2554
+#define Crosshairshadowoffset 82,2606
+#define Sectionlineoffset 83,2674
+#define Sectionlinewidth 84,2704
+#define Mousemargin 88,2765
+#define Mousebody_x 89,2790
+#define Mousebody_y 90,2822
+#define Mousebodywidth 91,2891
+#define Mousebodyheight 92,2957
+#define Mousethickness 93,3004
+#define Mousecorneradius 94,3051
+#define Buttonwidth 95,3100
+#define Buttonheight 96,3141
+#define Buttonmargin 97,3186
+#define Buttoncorneradius 98,3227
+#define Buttonthickness 99,3274
+#define Pickbuttonx 100,3319
+#define Pickbuttony 101,3366
+#define Planebuttonx 102,3413
+#define Planebuttony 103,3477
+#define Roomrotbuttonx 104,3523
+#define Roomrotbuttony 105,3590
+#define Statuslinex 106,3638
+#define Statusliney 107,3661
+#define Dotpattern 111,3715
+#define Largedotpattern 112,3741
+#define Dashpattern 113,3772
+#define Largedashpattern 114,3799
+#define Inversedotpattern 115,3831
+#define Inverselargedotpattern 116,3876
+#define Inversedashpattern 117,3915
+#define Inverselargedashpattern 118,3950
+#define Edgedimensionmargin 121,4020
+#define Edgedimensionoffset 122,4052
+#define Edgedimensionindent 123,4085
+#define Dimensionoffplane 124,4118
+#define MAX_GL_LISTS 127,4208
+} blitsavetype,*blitsaveptr;blitsaveptr134,4433
+  Room,139,4513
+  Blank,140,4521
+  Vanillaview,141,4530
+  Cutplane,142,4545
+  Cutplaneborder,143,4557
+  Crosshair,144,4575
+  Planepickedrect145,4588
+  Dotline 150,4617
+  Inversedotline,151,4632
+  Largedotline,152,4650
+  Inverselargedotline,153,4666
+  Dashline,154,4689
+  Inversedashline,155,4701
+  Largedashline,156,4720
+  Inverselargedashline157,4737
+} erase_record_type,*erase_record_ptr;erase_record_ptr167,4930
+
+icons.h,873
+#define icons_includes5,45
+#define Rotateiconrad 24,980
+#define Virtualrotateiconrad 25,1008
+#define Freedgerotateiconrad 26,1059
+#define Baublesize 27,1110
+#define Dragbaublesize 28,1147
+#define Rotateiconctrsize 29,1188
+#define Rotateiconcolor 30,1224
+#define Swizzlebehindcolor 31,1254
+#define Swizzleinfrontcolor 32,1287
+#define Minswizzlelength 33,1321
+#define Swaponsameaxis 34,1351
+#define Swaponotheraxis 35,1376
+#define Pausewait 36,1402
+#define Minpauseangle 37,1423
+#define Pausescapedistance 38,1449
+#define Numplanegrades 41,1518
+#define Planegradeindentx 42,1544
+#define Planegradeindenty 43,1573
+#define Planegradecubesize 44,1602
+#define Planegradeiconheight 45,1632
+  Donotuse_rotateicon 49,1715
+  Rotate_inplane_axis,50,1742
+  Rotate_outofplane_axis,51,1809
+  Rotate_dragging,52,1882
+  Maxrotatekind53,1901
+} rotatekind;54,1917
+
+init.h,27
+#define init_includes5,43
+
+intersect.h,363
+#define intersect_includes5,53
+#define Wascut 20,954
+#define Pt1cut 21,971
+#define Pt2cut 22,988
+#define Oncut 23,1005
+#define Nocut 24,1021
+#define Nearplane 25,1037
+#define Pt1near 26,1057
+#define Pt2near 27,1075
+#define Parallel 28,1093
+#define Tolerance 30,1113
+#define Forward 32,1210
+#define Reverse 33,1228
+#define Cutplanebboxmargin 35,1247
+
+list.h,1092
+#define list_includes5,43
+#define Nil 22,1011
+#define Null 23,1025
+#define Prev 25,1043
+#define Next 26,1058
+#define Maxnumtypes 28,1074
+#define Allsize 30,1098
+#define Listsize 31,1131
+#define Elem_type 33,1165
+#define Feature_type 34,1213
+#define Ep_type 35,1244
+#define Sort_type 36,1312
+#define Elemsize 38,1365
+#define Epsize 39,1399
+#define Sortsize 40,1434
+union anydata43,1549
+#define Normal_list 57,1706
+#define Circular_list 58,1728
+#define next_elem(61,1773
+#define prev_elem(63,1895
+struct liststruct68,2036
+struct elemstruct111,4062
+struct elemptrstruct126,4512
+struct sortstruct139,4913
+typedef union  anydata          alltypes;155,5363
+typedef struct liststruct       listype;157,5406
+typedef struct elemstruct       elemtype;158,5447
+typedef struct elemptrstruct    elemptrtype;159,5489
+typedef struct sortstruct       sortype;160,5534
+typedef listype      * listptr;162,5576
+typedef elemtype     * elemptr;163,5608
+typedef elemtype     * featureptr;164,5682
+typedef elemptrtype  * elemptrptr;165,5747
+typedef sortype      * sortptr;166,5782
+
+math3d.h,198
+#define math3d_includes5,47
+#define Deg2rad 19,920
+#define Smalldeg2rad 20,958
+#define Rad2deg 22,1003
+#define Smallrad2deg 23,1047
+#define Tolerance 25,1098
+#define Zeroveclengthtol 27,1121
+
+mirror.h,29
+#define mirror_includes5,47
+
+normals.h,103
+#define normals_includes5,49
+#define XYplane 23,968
+#define ZXplane 24,986
+#define YZplane 25,1004
+
+pencilsketch.h,849
+#define pencilsketch_includes5,59
+#define Sketchle_type 29,1236
+#define Sketchlesize 30,1260
+#define Accy 33,1304
+#define Line1End1 34,1359
+#define Line1End2 35,1425
+#define Line2End1 36,1489
+#define Line2End2 37,1556
+#define End1 39,1577
+#define End2 40,1592
+#define Bothends 41,1607
+#define Center_intersect 42,1627
+#define Coming 44,1656
+#define Going 45,1721
+#define Left 46,1760
+#define Right 47,1803
+#define Outside 48,1848
+#define Inside 49,1910
+#define Notraversed 50,1941
+#define Traversed 51,2009
+#define Clockwise 52,2076
+#define Counterclockwise 53,2096
+#define Nonewpoint 56,2169
+#define Movetopoint 57,2190
+#define Drawtopoint 58,2212
+#define Autoclose 59,2234
+#define Pi 61,2255
+struct sketchlestruct65,2396
+typedef struct sketchlestruct   sketchletype;76,2650
+typedef sketchletype * sketchleptr;77,2696
+
+pick.h,27
+#define pick_includes5,43
+
+platform_gl.h,29
+#define _PLATFORM_GL_H_2,24
+
+platform_glu.h,30
+#define _PLATFORM_GLU_H_2,25
+
+platform_glut.h,31
+#define _PLATFORM_GLUT_H_2,26
+
+polhemus.h,224
+#define polhemus_includes5,52
+#define conv2deg 19,927
+} polhstatestruct,*polhstateptr;polhstateptr30,1176
+} polhemusvalstruct,*polhemusvalptr;polhemusvalptr36,1260
+} calibratestruct,*calibrateptr;calibrateptr41,1344
+
+primitives.h,1122
+#define primitives_includes5,55
+#define Toolholderwidth 21,1112
+#define Toolholderheight 22,1142
+#define Toolholderdepth 23,1172
+#define Numprimtypes 25,1202
+#define Priminfonamelength 26,1225
+#define Primrecsize 28,1256
+#define Cuberecsize 30,1294
+#define Cylinderecsize 31,1331
+#define Conerecsize 32,1375
+#define Sphererecsize 33,1412
+#define Pyramidrecsize 34,1453
+  Cube_id 38,1512
+  Cylinder_id,39,1527
+  Cone_id,40,1542
+  Sphere_id,41,1553
+  Pyramid_id42,1566
+} prim_id_kind;43,1579
+typedef struct cuberec_struct48,1725
+} cube_rec,*cube_rec_ptr;cube_rec_ptr51,1787
+typedef struct cylinderec_struct53,1814
+} cylinder_rec,*cylinder_rec_ptr;cylinder_rec_ptr57,1891
+typedef struct conerec_struct59,1926
+} cone_rec,*cone_rec_ptr;cone_rec_ptr63,2000
+typedef struct sphererec_struct65,2027
+} sphere_rec,*sphere_rec_ptr;sphere_rec_ptr69,2096
+typedef struct pyramidrec_struct71,2127
+} pyramid_rec,*pyramid_rec_ptr;pyramid_rec_ptr74,2192
+typedef struct primrec_struct83,2568
+} prim_rec,*prim_rec_ptr;prim_rec_ptr88,2763
+typedef struct prim_create_struct94,2918
+} prim_create_rec;99,3124
+
+properties.h,375
+#define properties_includes5,55
+#define Prop_type 25,1112
+#define Propsize 26,1132
+#define Maxpossibleproperty 27,1166
+typedef int property;30,1268
+#define Maxproperty 31,1290
+#define Maxpropertynamelen 32,1330
+typedef struct propinfostruct37,1418
+} propinfotype,*propinfoptr;propinfoptr41,1516
+typedef struct propstruct44,1547
+} proptype, *proptr;proptr53,1793
+
+rotateobj.h,192
+#define rotateobj_includes5,53
+#define rx 26,994
+#define ry 27,1007
+#define tolznorm 28,1020
+typedef struct rotateinfostruct37,1128
+} rotateinfotype,*rotateinfoptr;rotateinfoptr41,1202
+
+rotatetool.h,684
+#define rotatetool_includes5,55
+#define Rotatetoolradius 23,918
+#define Rotatedockmargin 24,949
+#define Rotatetooldepth 25,997
+#define Rotatetool_dockx 26,1025
+#define Rotatetool_docky 27,1100
+#define Rotatesnapangle 28,1175
+#define Baublesize 29,1202
+#define Dragbaublesize 30,1239
+#define Showbaubles 31,1280
+#define Hidebaubles 32,1306
+#define Rotateiconctrsize 33,1331
+#define Rotateiconcolor 34,1375
+#define Swizzlebehindcolor 35,1405
+#define Swizzleinfrontcolor 36,1438
+#define Minswizzlelength 37,1472
+#define Swaponsameaxis 38,1502
+#define Swaponotheraxis 39,1527
+#define Pausewait 40,1553
+#define Minpauseangle 41,1574
+#define Pausescapedistance 42,1600
+
+select.h,403
+#define select_includes5,47
+  Nothingselect 27,1017
+  Vertselect,28,1038
+  Edgeselect,29,1052
+  Faceselect,30,1066
+  Inplanefaceselect,31,1080
+  Shellselect,32,1101
+  Objselect33,1116
+#define Oneselectable_permitted 36,1132
+#define Manyselectables_permitted 37,1169
+#define selectablesize 39,1210
+typedef struct selectablestruct41,1257
+} selectabletype,*selectableptr;selectableptr48,1632
+
+shade.h,376
+#define shade_includes5,45
+#define ZbufferRangeMin 25,981
+#define ZbufferRangeMax 26,1008
+#define ZbufferRange 27,1036
+#define Flashmargin 28,1093
+#define NonFlashRange 29,1134
+#define FlashRangeStart 30,1185
+#define Newflashmargin 32,1246
+#define Edgeselectcoloroffset 33,1274
+#define Pi 34,1307
+#define Maxacostable 35,1330
+#define Selectableoffsetscale 37,1357
+
+slice.h,216
+#define slice_includes5,45
+#define properties_includes 25,981
+#define Nosplit 32,1111
+#define Dosplit 33,1129
+#define Inback 35,1148
+#define Infront 36,1165
+#define Onplane 37,1183
+#define Split_prop 39,1202
+
+storage_cutplane.h,363
+#define storage_includes5,49
+#define NAMELENGTH 19,923
+#define Numspecialfiles 20,945
+#define Techniquenamelen 22,973
+#define Numtechniques 23,1001
+#define Pathnamelength 25,1027
+#define Filenamelength 26,1054
+typedef struct techniquestruct28,1081
+} techniquerec,*techniquerecptr;techniquerecptr32,1182
+typedef char filename_type[filename_type34,1216
+
+sun.h,666
+#define sun_includes5,42
+#define Delemsize 20,989
+#define Oelemsize 21,1025
+#define Qelemsize 22,1061
+#define Delem_type 24,1098
+#define Oelem_type 25,1150
+#define Qelem_type 26,1202
+struct delemstruct29,1253
+struct oelemstruct41,1512
+struct qelemstruct55,1807
+typedef struct delemstruct      delemtype;67,2061
+typedef struct oelemstruct      oelemtype;68,2104
+typedef struct qelemstruct      qelemtype;69,2147
+typedef delemtype    * delemptr;71,2191
+typedef oelemtype    * oelemptr;72,2224
+typedef qelemtype    * qelemptr;73,2257
+typedef Coord vertype[vertype77,2377
+#define vx 78,2403
+#define vy 79,2416
+#define vz 80,2429
+#define vw 81,2442
+
+text.h,641
+#define text_includes5,43
+#define Textstringsize 21,805
+#define Textgroupsize 22,851
+#define Maxstringstylelength 23,895
+#define Shadowoffset 24,927
+  Hershey,28,968
+  Helvetica,29,979
+  Times,30,992
+  Palatino,31,1001
+  Courier,32,1013
+  Maxtextfontype33,1024
+} textfontype;34,1041
+  Plain,38,1072
+  Underline,39,1081
+  Bold,40,1094
+  Shadow,41,1102
+  Italic,42,1112
+  Maxstringstyle43,1122
+} stringstyletype;44,1139
+typedef struct textstringstruct46,1159
+} textstringtype,*textstringptr;textstringptr58,1553
+typedef struct textgroupstruct60,1587
+} textgrouptype,*textgrouptr;textgrouptr64,1716
+} char_rec;70,1808
+
+tools.h,2707
+#define tools_includes5,45
+#define Pencilwidth 29,1051
+#define Pencilength 30,1076
+#define Penciltip 31,1115
+#define Menublockwidth 33,1152
+#define Menublockheight 34,1180
+#define Menublockdepth 35,1209
+#define Menublockresolution 36,1237
+#define Menumargin 37,1270
+#define Toolboxwidth 39,1312
+#define Toolboxheight 40,1338
+#define Toolboxdepth 41,1365
+#define Toolboxleaf 42,1391
+#define Toolboxmargin 43,1415
+#define Toolboxleafrot 44,1451
+#define Magnetradius 46,1479
+#define Magnetbarthickness 47,1505
+#define Magnetdepth 48,1537
+#define Magnetresolution 49,1562
+#define Magnetystretch 50,1590
+#define Toolpadsquare 52,1618
+#define Numtoolpadverts 53,1645
+#define Toolpadcorner 54,1672
+#define Toolpadwidth 55,1714
+#define Toolpadheight 56,1757
+#define Toolpadwidthmargin 57,1801
+#define Toolpadheightmargin 58,1849
+#define Padhandlewidth 59,1899
+#define Padhandleheight 60,1943
+#define Headpadsquare 62,1982
+#define Numheadpadverts 63,2009
+#define Headpadcorner 64,2036
+#define Headpadwidth 65,2078
+#define Headpadheight 66,2121
+#define Headpadwidthmargin 67,2165
+#define Headpadheightmargin 68,2213
+#define Toolpadzoffset 70,2264
+#define Headpadzoffset 71,2291
+#define Toolpadblacklinewidth 72,2318
+#define Decalthickness 73,2383
+#define Decalzoffset 74,2411
+#define Toolbarwidth 76,2454
+#define Toolbarheight 77,2497
+#define Toolbardepth 78,2524
+#define Normalpadsquare 80,2551
+#define Normalpadcorner 81,2580
+#define Storagesquare 82,2627
+#define Floppysize 84,2666
+#define Floppycorner 85,2691
+#define Floppynotch 86,2732
+#define Floppydepth 87,2772
+#define Portfoliosize 89,2813
+#define Portfoliohistory 90,2860
+#define Primswidth 92,2889
+#define Primsheight 93,2923
+#define Primsdepth 94,2959
+#define Primsmargin 95,2991
+#define Primsresolution 96,3031
+#define Sawbladewidth 98,3059
+#define Sawbladeheight 99,3087
+#define Sawbladedepth 100,3115
+#define Sawnickwidth 101,3152
+#define Sawnickheight 102,3212
+#define Numsawnicks 103,3257
+#define Sawhandlewidth 105,3281
+#define Sawhandleheight 106,3326
+#define Sawhandledepth 107,3365
+#define Colorbasewidth 109,3405
+#define Colorbaseheight 110,3434
+#define Colorbasedepth 111,3481
+#define Chipdepth 112,3527
+#define Colorbarwidth 113,3549
+#define Colorbarheight 114,3608
+#define Colorbardepth 115,3637
+#define Mincolorbarheight 116,3674
+#define Coneresolution 118,3705
+#define Cylinderesolution 119,3758
+#define Primboxoffsetx 121,3788
+#define Primboxoffsety 122,3818
+#define Primboxoffsetz 123,3847
+#define Chairseatheight 124,3877
+#define Chairlegwidth 125,3906
+#define Chairbacksupportwidth 126,3933
+#define Maxlegwidth 127,3968
+#define Maxlegheight 128,4033
+
+topology.h,2953
+#define topology_includes5,51
+#define Outer 29,1080
+#define Inner 30,1096
+#define Plus 33,1144
+#define Minus 34,1159
+#define Twin_le(39,1208
+#define Forwards 45,1392
+#define Reverse 46,1411
+#define Vertintr 48,1430
+#define Edgeintr 49,1449
+#define Edgeparallel 50,1468
+#define Edgevirtual 51,1491
+#define Inplaneface 52,1513
+#define Sectionring 53,1535
+#define Noflags 58,1703
+#define Visibleflag 59,1721
+#define Selectableflag 60,1743
+#define Pickedflag 61,1768
+#define Dragflag 62,1789
+#define Transparentflag 63,1808
+#define Flipflag 64,1835
+#define Nonormalflag 65,1855
+#define Msgpendingflag 66,1879
+#define Nonmanifoldflag 67,1906
+#define Noshadowflag 68,1934
+#define Lockedgeometryflag 69,1959
+#define Neverdrawflag 70,1991
+#define Alwaysdrawflag 71,2018
+#define Sectioninvisibleflag 72,2046
+#define Selectinvisibleflag 73,2080
+#define Pickedinvisibleflag 74,2114
+#define Allflags 76,2149
+  Fve_intersect 80,2204
+  Fve_inplane,81,2225
+  Evf_inplane,82,2240
+  Vfe_inplane83,2255
+  Vfe_type 90,2352
+  Evf_type,91,2368
+  Le_type,92,2380
+  Bound_type,93,2391
+  Fve_type,94,2405
+  Shell_type,95,2417
+  Obj_type,96,2431
+  World_type,97,2443
+  Seg_type,98,2457
+  Ring_type,99,2469
+  Curve_type,100,2482
+  Surf_type101,2496
+#define Vfesize 104,2512
+#define Evfsize 105,2544
+#define Lesize 106,2576
+#define Boundsize 107,2606
+#define Fvesize 108,2642
+#define Shellsize 109,2674
+#define Objsize 110,2710
+#define Worldsize 111,2742
+#define Segsize 112,2778
+#define Ringsize 113,2813
+#define Curvesize 114,2847
+#define Surfsize 115,2883
+#define Maxworldnamelength 117,2918
+#define Maxobjectnamelength 118,2948
+typedef struct evfstruct 122,3030
+} evftype,*evfptr;evfptr151,4487
+typedef struct lestruct154,4508
+} letype,*leptr;leptr167,5062
+typedef struct boundstruct170,5081
+} boundtype,*boundptr;boundptr182,5622
+typedef struct curvestruct186,5670
+} curvetype,*curveptr;curveptr201,6305
+typedef struct surfstruct205,6355
+} surftype,*surfptr;surfptr221,7004
+typedef struct fvestruct225,7076
+} fvetype,*fveptr;fveptr247,8177
+typedef struct vfestruct251,8279
+} vfetype,*vfeptr;vfeptr270,9149
+typedef struct shellstruct273,9170
+} shelltype,*shellptr;shellptr294,10255
+typedef struct objstruct298,10332
+} objtype,*objptr;objptr348,12408
+} viewertype;353,12471
+typedef struct worldstruct355,12486
+} worldtype,*worldptr;worldptr371,13113
+typedef struct segmentstruct373,13137
+} segmentype,*segmentptr;segmentptr384,13414
+typedef struct ringstruct386,13441
+} ringtype,*ringptr;ringptr395,13737
+#define First_shell_le(397,13759
+#define First_shell_bnd(399,13851
+#define First_shell_vfe(400,13924
+#define First_shell_evf(401,13975
+#define First_shell_fve(402,14026
+#define First_obj_le(404,14078
+#define First_obj_bnd(406,14191
+#define First_obj_vfe(408,14287
+#define First_obj_evf(409,14359
+#define First_obj_fve(410,14431
+#define First_obj_shell(411,14503
+
+update.h,1088
+#define update_includes5,48
+#define Immediateupdate 23,911
+#define Nonimmediateupdate 24,940
+#define Loginoldbuffer 26,974
+#define Loginthisbuffer 27,1002
+#define Useobjbbox 29,1033
+#define Usegroupbbox 30,1057
+#define Maxconstrainscans 35,1210
+#define Maxupdatenames 40,1330
+#define Noupdateflag 42,1404
+#define Transformflag 43,1427
+#define Evfeqnsflag 44,1451
+#define Cutevfsflag 45,1489
+#define Transformcutevfsflag 46,1525
+#define Clearcutsectionflag 47,1570
+#define Makecutsectionflag 48,1623
+#define Findnormalsflag 49,1674
+#define Computeplanedistsflag 50,1721
+#define Computebboxflag 51,1771
+#define Cleartranslatesflag 52,1821
+#define Getselectableflag 53,1869
+#define Getnearestptsflag 54,1919
+#define Recomputebackfaceflag 55,1967
+#define Findplanenearptsflag 56,2019
+#define Redrawflag 57,2074
+#define Logerasebboxflag 58,2118
+#define Allupdateflags 59,2158
+#define Maxupdateflaglength 61,2446
+#define Maxupdatetimelength 62,2477
+struct updatestruct64,2509
+typedef struct updatestruct updatetype;71,2606
+typedef updatetype * updateptr;72,2646
+
+user.h,1605
+#define user_includes5,43
+#define Pkboxsize 24,981
+#define Pkboxdiv 25,1004
+#define Fastcursormove 27,1026
+#define Minplanesnapdist 28,1054
+#define Fastrot 30,1084
+#define Slowrot 31,1104
+#define Cutsizex 32,1124
+#define Cutsizey 33,1148
+#define Cutsizez 34,1171
+#define Zoombox 35,1194
+#define Minangle 36,1213
+#define Maxangle 37,1236
+#define Minrotx 39,1259
+#define Maxrotx 40,1281
+#define Minroty 41,1302
+#define Maxroty 42,1324
+#define Minroomrotx 43,1345
+#define Maxroomrotx 44,1367
+#define Minroomroty 45,1391
+#define Maxroomroty 46,1416
+#define Maxroomroty 47,1440
+#define Minzoom 48,1464
+#define Maxzoom 49,1482
+#define Selection 51,1505
+#define Createsection 52,1525
+#define Sweepmode 53,1549
+#define Sketching 54,1569
+#define Nocontrolbuttonsbit 58,1671
+#define Lbuttonbit 59,1701
+#define Mbuttonbit 60,1722
+#define Rbuttonbit 61,1743
+#define LMbuttonsbit 62,1764
+#define LRbuttonsbit 63,1812
+#define MRbuttonsbit 64,1860
+#define LMRbuttonsbit 65,1908
+#define Roomrotatebuttonbit 66,1970
+#define Multipleselectbuttonbit 67,2000
+#define Zoombuttonbit 68,2035
+#define Leftbutton 70,2063
+#define Midbutton 71,2092
+#define Rightbutton 72,2122
+#define Noattributes 76,2233
+#define LockedGeometrytool 77,2256
+#define Deformtool 78,2285
+#define Cutool 79,2306
+#define Drawtool 80,2323
+#define Gluetool 81,2342
+#define Magnetictool 82,2362
+#define Hotspotsnap 83,2386
+#define Receptacletool 84,2409
+#define Transparentool 85,2436
+struct statestruct87,2464
+typedef struct statestruct statetype;99,2960
+typedef statetype *stateptr;stateptr100,2998
+
+vertex.h,29
+#define vertex_includes5,47
