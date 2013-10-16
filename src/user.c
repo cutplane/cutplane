@@ -469,7 +469,7 @@ snap_plane_to_nearestpt(worldptr world,stateptr state,vertype cursor_move)
   if (absplanemove > Minplanesnapdist)
   {
     lastmovelarge = TRUE;
-    return;			/* note if plane moved a lot and return */
+    return FALSE;	    /* note if plane moved a lot and return */
   }
   if (lastmovelarge)
   {      /* if moved a lot last time... */
@@ -484,7 +484,7 @@ snap_plane_to_nearestpt(worldptr world,stateptr state,vertype cursor_move)
   }
   searchpt = nearest_nearpt;	/* set equal to global search mark */
   if (searchpt == Nil)
-    return;			/* there are no points in the world! */
+    return FALSE;	       /* there are no points in the world! */
   searchplanez = ((vfeptr) searchpt->sortelem)->pos[vz];
 
   search_forwards = (cursor_move[vz] > 0.0);
@@ -511,12 +511,12 @@ snap_plane_to_nearestpt(worldptr world,stateptr state,vertype cursor_move)
   {
     searchpt = go_into_range(oldplanez,newplanez,searchpt,search_forwards);
     if (searchpt == Nil)
-      return;			/* coudn't get into range. */
+      return FALSE;		/* coudn't get into range. */
     searchpt = go_below_range(oldplanez,newplanez,searchpt,search_forwards);
   }
 
   if (searchpt == Nil)
-    return;			/* coudn't get below range. */
+    return FALSE;		/* coudn't get below range. */
 
   /* walk back up through range until you either find a nearpt or you exit */
   /* top of range. if you exit top of range, record that searchpt as the new */
@@ -525,7 +525,7 @@ snap_plane_to_nearestpt(worldptr world,stateptr state,vertype cursor_move)
   /* do anything either. Otherwise, adjust the delta to snap onto the nearpt. */
   searchpt = walk_up_range(oldplanez,newplanez,searchpt,search_forwards);
   if (searchpt == Nil)
-    return;			/* coudn't get back into or above range. */
+    return FALSE;	   /* coudn't get back into or above range. */
 
   if ((in_the_range(oldplanez,newplanez,searchpt,search_forwards)) &&
       (searchpt != nearest_nearpt))

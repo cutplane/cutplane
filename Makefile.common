@@ -4,7 +4,7 @@ OBJS= obj/main.o obj/init.o obj/globals.o obj/math3d.o obj/list.o obj/debug.o ob
 
 EXTERNSRCS= src/arrange.c src/boolprep.c src/boolean.c src/color.c src/controls.c src/device.cc src/cplcore.c src/cplib.c src/cplops.c src/cplread.c src/cursor.c src/debug.c src/deform.c src/duplicate.c src/geometry.c src/grafx.c src/hershey.c src/init.c src/intersect.c src/list.c src/math3d.c src/mirror.c src/scale.c src/normals.c src/objtree.c src/pencilsketch.c src/pick.c src/primitives.c src/properties.c src/rotateobj.c src/rotatetool.c src/translate.c src/select.c src/shade.c src/slice.c src/storage_cutplane.c src/text.c src/topology.c src/transform.c src/tools.c src/topology.c src/update.c src/user.c src/vertex.c src/zoom.c 
 
-3form: extern.h $(OBJS) $(EXECS)
+3form: include/extern.h $(OBJS) $(EXECS)
 	$(CCOMP) $(LINKFLAGS) $(OBJS) $(LIBS) -o 3form
 	@ echo ""
 	@ echo "**** MAKE COMPLETE, O Greatest Master of the Universe!"
@@ -12,7 +12,7 @@ EXTERNSRCS= src/arrange.c src/boolprep.c src/boolean.c src/color.c src/controls.
 
 extern.h: $(EXTERNSRCS)
 	@ echo "A SOURCE FILE HAS CHANGED, UPDATE ANY EXTERNS IN EXTERN.H\!"
-	@ touch extern.h
+	@ touch include/extern.h
 
 #-----------------------------------------------------------------------------#
 # STARTUP/INITIALIZATION ROUTINES                                             #
@@ -233,7 +233,7 @@ include/cutplane.h: include/geometry.h include/list.h include/select.h include/t
 #-----------------------------------------------------------------------------#
 
 clean:
-	rm obj/*.o
+	-@rm obj/*.o
 
 distclean:
-	rm 3form obj/*.o src/*~ include/*~ cpl/*~ *~
+	-@rm 3form debug*.txt obj/*.o src/*~ include/*~ cpl/*~ *~

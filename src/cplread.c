@@ -32,7 +32,7 @@
 #include <sys/stat.h>		/* this is for stat */
 #endif
 
-#include <stdint.h>
+#include <stddef.h>
 #include <stdarg.h>
 
 #include <config.h>
@@ -1186,7 +1186,7 @@ encode_CPL_symbol(char symbolstr[],CPL_word_ptr load_word,
     else
     {
       write_CPLparsebug_notice();
-      fprintf(dbgdump, "Code kind %s unknown!\n", symbolnamestr); // CHECK ME!!! dow we want to print the address or the string? -- LJE
+      fprintf(dbgdump, "Code kind %s unknown!\n", symbolnamestr); // CHECK ME!!! do we want to print the address or the string? -- LJE
       system_error("encode_CPL_symbol!");
     }
   }
@@ -1339,6 +1339,7 @@ resolve_CPL_forward_object_refs(void)
   {
     nextref = thisref->next;
     fill_in_word = (CPL_word_ptr) thisref->sortelem;
+    printf("resolve_CPL_forward_object_refs: thisref name = %s\n", thisref->sortdata1->ptr);
     result = fill_in_word->word_data.CPLfeaturelist->first.ep->thiselem =
       (elemptr) find_object_in_any_world(thisref->sortdata1->ptr);
     if (result == Nil)
@@ -1543,7 +1544,8 @@ read_CPLcode_into_ram(char *ram_filename)
 read_CPLcode_into_property(char *prop_filename)
 {
   FILE *prop_file;
-  int i,property_num,reqd_size;
+  int i, property_num;
+  ptrdiff_t reqd_size;
   CPL_word_ptr CPL_temp_RAM_ptr,end_of_propertycode;
   ;
   prop_file = fopen(prop_filename,"r");
@@ -1558,12 +1560,15 @@ read_CPLcode_into_property(char *prop_filename)
   CPL_temp_RAM_ptr = (CPL_word_ptr) alloc_elem(Systemcodeblocsize * CPLwordsize);
   strcpy(parse_filename,prop_filename); /* for debugging */
   end_of_propertycode = read_cplfile(prop_filename,CPL_temp_RAM_ptr,Nil);
-  reqd_size = (uint64_t) end_of_propertycode - (uint64_t) CPL_temp_RAM_ptr; // 64 bit change -- LJE
+  reqd_size = (addr_sized_uint) end_of_propertycode - (addr_sized_uint) CPL_temp_RAM_ptr; // 64 bit change -- LJE
 #ifdef debug
   heapinfo();
   printf("# of words used:%d\n",reqd_size /** CPLwordsize*/);
 #endif
+  // clang's realloc() returns a new area of memory, even when downsizing! 
+#ifndef __clang__
   CPL_temp_RAM_ptr = realloc(CPL_temp_RAM_ptr, reqd_size /** CPLwordsize*/);
+#endif
 #ifdef debug
   heapinfo();
 #endif
@@ -1585,7 +1590,7 @@ read_CPLcode_into_property(char *prop_filename)
 read_CPL_privatecode(char *private_filename,featureptr known_owner)
 {
   FILE *private_file;
-  int reqd_size;
+  ptrdiff_t reqd_size;
   CPL_word_ptr CPL_temp_RAM_ptr,end_of_privatecode;
   ;
   private_file = fopen(private_filename,"r");
@@ -1599,9 +1604,12 @@ read_CPL_privatecode(char *private_filename,featureptr known_owner)
   strcpy(parse_filename,private_filename); /* for debugging */
   end_of_privatecode = read_cplfile(private_filename,
 				    CPL_temp_RAM_ptr,known_owner);
-  reqd_size = (int) (end_of_privatecode - CPL_temp_RAM_ptr);
+  reqd_size = (ptrdiff_t) (end_of_privatecode - CPL_temp_RAM_ptr);
 
+  // clang's realloc() returns a new area of memory, even when downsizing! 
+#ifndef __clang__
   CPL_temp_RAM_ptr = realloc(CPL_temp_RAM_ptr, reqd_size * CPLwordsize);
+#endif
 
   known_owner->privatecode = CPL_temp_RAM_ptr;
 }
@@ -1703,7 +1711,7 @@ disassemble_CPL_auxdata(CPL_word_ptr dis_word,char *auxwordstr)
 	     the_color[2]);
     break;
   case CPLaux_update_data: /* fix this up so they can be really interpreted! */	
-    sprintf (auxwordstr, "Const:U%d/when:%d",
+    sprintf (auxwordstr, "Const:U%ld/when:%d",
 	     dis_word->word_data.CPLauxdata.update_data.update_flags,
 	     dis_word->word_data.CPLauxdata.update_data.update_now);
     break;

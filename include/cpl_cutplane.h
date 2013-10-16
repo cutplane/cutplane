@@ -23,6 +23,8 @@
 #include "rotateobj.h"
 #include "update.h"
 
+#include <stdint.h>		// For standard int typedefs...
+
 /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
 /*                           CONSTANT DEFINITIONS                       */
 /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
@@ -386,6 +388,19 @@ typedef enum
 /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
 /*                   AUXILIARY DATA STRUCTURES DEFINITION               */
 /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
+
+// There are places where addresses are store in ints, take a stab at
+// determining what size int is needed... -- LJE
+
+#ifdef __SIZEOF_POINTER__     // GCC & CLANG define __SIZEOF_POINTER__
+#if __SIZEOF_POINTER__ == 8
+typedef uint64_t addr_sized_uint;
+#else
+typedef uint32_t addr_sized_uint;
+#endif
+#else  // Otherwise just assume 64 bit...
+typedef uint32_t addr_sized_uint;
+#endif
 
 
 /* They are used as arguments to CPL opcodes. */

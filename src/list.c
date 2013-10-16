@@ -144,7 +144,7 @@ add_elem(listptr the_list, elemptr prev_elem, elemptr this_elem)
       return;
     }
     if (prev_elem == Nil)
-      prev_elem == the_list->last.any;
+      prev_elem = the_list->last.any;
     this_elem->next = prev_elem->next;
     this_elem->prev = prev_elem;
     prev_elem->next = this_elem;
@@ -515,7 +515,7 @@ copy_elem(elemptr sourcelem, elemptr destelem)
 	create_blank_elem(Sort_type);
       memmove((void *) ((sortptr) destelem)->sortdata1,
 	      (const void *) ((sortptr) sourcelem)->sortdata1,
-	      typesize[Sort_type]);
+	      sizeof(union anydata));
     }
     if (((sortptr) sourcelem)->sortdata2 != Nil)
     {
@@ -523,7 +523,7 @@ copy_elem(elemptr sourcelem, elemptr destelem)
 	create_blank_elem(Sort_type);
       memmove((void *) ((sortptr) destelem)->sortdata2,
 	      (const void *) ((sortptr) sourcelem)->sortdata2,
-	      typesize[Sort_type]);
+	      sizeof(union anydata));
     }
     if (((sortptr) sourcelem)->sortdata3 != Nil)
     {
@@ -531,7 +531,7 @@ copy_elem(elemptr sourcelem, elemptr destelem)
 	create_blank_elem(Sort_type);
       memmove((void *) ((sortptr) destelem)->sortdata3,
 	      (const void *) ((sortptr) sourcelem)->sortdata3,
-	      typesize[Sort_type]);
+	      sizeof(union anydata));
     }
     break;
   case Bound_type:
@@ -688,7 +688,8 @@ add_to_featurelist(listptr add_list,featureptr new_feature)
   ;
   if (!already_in_featurelist(add_list,new_feature))
   {
-    newfeature_ep = (elemptrptr) append_new_elem(add_list,Ep_type);
+    long dummy;
+    newfeature_ep = (elemptrptr) append_new_elem(add_list, Ep_type, dummy);
     newfeature_ep->thiselem = new_feature;
   }
 }

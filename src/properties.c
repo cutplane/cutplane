@@ -285,6 +285,31 @@ set_property(thisfeature,thepropkind,value) /* no proto here since value  */
   add_global_property(newprop,determine_world_proplist(thisfeature));
 }
 
+void
+set_any_property(elemptr thisfeature,
+		 property thepropkind,
+		 union anydata value)
+{
+  proptr thisprop,newprop;  
+  ;
+  thisprop = thisfeature->proplist->first.prop;
+  while (thisprop)
+  {
+    if (thisprop->propkind == thepropkind)
+    {
+      thisprop->value.l = value.l;
+      return;
+    }
+    thisprop = thisprop->next;
+  }
+  newprop = (proptr) add_new_blank_elem(thisfeature->proplist,Nil,Prop_type);
+  newprop->propkind = thepropkind;
+  newprop->owner = thisfeature;
+  newprop->value.l = value.l;
+  set_prop_flags(thisfeature,thepropkind);
+  add_global_property(newprop,determine_world_proplist(thisfeature));
+}
+
 /* Clear a property flag... if clearing it requires updating the selectability */
 /* status of a motherobject, log an update to do so. */
 
@@ -470,7 +495,7 @@ transfer_feature_properties(featureptr sourcefeature,featureptr destfeature)
     tempvalue = transprop->value;
     del_global_property(transprop,determine_world_proplist(sourcefeature));
     del_elem(sourcefeature->proplist,(elemptr) transprop);
-    set_property(destfeature,tempkind,tempvalue);
+    set_any_property(destfeature,tempkind,tempvalue);
     transprop = nextprop;
   }
 }
@@ -483,7 +508,7 @@ copy_feature_properties(featureptr sourcefeature,featureptr destfeature)
   copyprop = sourcefeature->proplist->first.prop;
   while (copyprop)
   {
-    set_property(destfeature,copyprop->propkind,copyprop->value);
+    set_any_property(destfeature,copyprop->propkind,copyprop->value);
     copyprop = copyprop->next;
   }
 }

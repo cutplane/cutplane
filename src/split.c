@@ -573,11 +573,18 @@ dumb_recombine_coplanar_faces(objptr thisobj)
       fve1 = thisevf->le1->motherbound->motherfve;
       fve2 = thisevf->le2->motherbound->motherfve;
       if (fve1 != fve2)
-	if (coplanar(fve1,fve2))
+      {
+	if (coplanar(fve1, fve2))
 	  kill_edge_face(thisevf->le1,thisevf->le2);
+      }
       else
+      {
+	// If the two sides of the edge are the same boundary, we
+	// split the boundary in two. For example if we have a concave
+	// face that abuts itself along one edge.
 	if (thisevf->le1->motherbound == thisevf->le2->motherbound)
-	  kill_edge_make_ring(thisevf->le1,thisevf->le2);
+	  kill_edge_make_ring(thisevf->le1, thisevf->le2);
+      }
 
       thisevf = nextevf;
     }
@@ -593,7 +600,7 @@ remove_coplanar_surface_facets(surfptr thisurf)
   evfptr thisevf;
   ;
   if (thisurf == Nil)
-    return;
+    return Nil;
   if (thisurf->fvelist->numelems == 0)
     system_error("remove_surface_facets: this surface has no facets");
   else if (thisurf->fvelist->numelems == 1)

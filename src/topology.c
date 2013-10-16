@@ -494,8 +494,7 @@ new_le(next_le,thisevf,thisvfe,dir)
 }
 
   leptr
-del_le(thisle)
-  leptr thisle;
+del_le(leptr thisle)
 {
   leptr thisleprev;
   listptr lelist;
@@ -1111,9 +1110,11 @@ kill_ring_make_edge(le1,le2) /* merges two loops from the same face into one */
 }
 
   boundptr
-kill_edge_make_ring(le1,le2) /* splits a loop into 2 loops in the same face */
-  leptr le1,le2; /* the loop must have an edge that appears twice when */
-{                /* traversing the loop, this is the edge that is removed */
+kill_edge_make_ring(leptr le1, leptr le2)
+  /* splits a loop into 2 loops in the same face */
+  /* the loop must have an edge that appears twice when */
+  /* traversing the loop, this is the edge that is removed */
+{  
   boundptr newbound, oldbound;
   leptr temple,le1next,le1prev,le2prev;
   evfptr doomedevf;
@@ -1152,6 +1153,15 @@ kill_edge_make_ring(le1,le2) /* splits a loop into 2 loops in the same face */
     numles++;
   } while (temple != le2);
 
+  // Initialize the new boundary lelist so that del_le() works
+  newbound->lelist->first.le = le2;
+  newbound->lelist->last.le = le2->prev;
+  newbound->lelist->numelems = numles;
+  // Adjust the old boundary as well...
+  oldbound->lelist->first.le = le1; // Just to be sure...
+  oldbound->lelist->last.le = le1->prev;  
+  oldbound->lelist->numelems -= numles;
+
   /* delete the extra loop edges le1 and le2 */
   le1prev = del_le(le1);
   le2prev = del_le(le2);
@@ -1159,14 +1169,12 @@ kill_edge_make_ring(le1,le2) /* splits a loop into 2 loops in the same face */
   /* point the old boundary to the loop edge that was before le1 */
   oldbound->lelist->first.le = le1prev;
   oldbound->lelist->last.le = le1prev->prev;
-  oldbound->lelist->numelems -= numles;
   /* make sure le1's vfe points back to a half edge in the correct loop */
   (le1prev->next)->facevert->startle = le1prev->next;
 
   /* same comments as above */
   newbound->lelist->first.le = le2prev;
   newbound->lelist->last.le = le2prev->prev;
-  newbound->lelist->numelems += numles;
   (le2prev->next)->facevert->startle = le2prev->next;
 
   /* delete the extra evf */
