@@ -1565,8 +1565,9 @@ read_CPLcode_into_property(char *prop_filename)
   heapinfo();
   printf("# of words used:%d\n",reqd_size /** CPLwordsize*/);
 #endif
-  // clang's realloc() returns a new area of memory, even when downsizing! 
-#ifndef __clang__
+  // The realloc() in clang and the LLVM version of GCC in Lion return
+  // a new area of memory, even when downsizing!
+#if !defined(__clang__) && !defined(__llvm__)
   CPL_temp_RAM_ptr = realloc(CPL_temp_RAM_ptr, reqd_size /** CPLwordsize*/);
 #endif
 #ifdef debug
@@ -1606,8 +1607,9 @@ read_CPL_privatecode(char *private_filename,featureptr known_owner)
 				    CPL_temp_RAM_ptr,known_owner);
   reqd_size = (ptrdiff_t) (end_of_privatecode - CPL_temp_RAM_ptr);
 
-  // clang's realloc() returns a new area of memory, even when downsizing! 
-#ifndef __clang__
+  // The realloc() in clang and the LLVM version of GCC in Lion return
+  // a new area of memory, even when downsizing!
+#if !defined(__clang__) && !defined(__llvm__)
   CPL_temp_RAM_ptr = realloc(CPL_temp_RAM_ptr, reqd_size * CPLwordsize);
 #endif
 
