@@ -233,7 +233,9 @@ include/cutplane.h: include/geometry.h include/list.h include/select.h include/t
 #-----------------------------------------------------------------------------#
 
 clean:
-	-@rm obj/*.o
+	@echo rm obj/*.o
+	-@rm obj/*.o 2>/dev/null || true
 
 distclean:
-	-@rm 3form debug*.txt obj/*.o src/*~ include/*~ cpl/*~ *~
+	@echo rm 3form debug*.txt obj/*.o src/*~ include/*~ cpl/*~ *~
+	-@rm 3form debug*.txt obj/*.o src/*~ include/*~ cpl/*~ *~ 2>/dev/null || true
