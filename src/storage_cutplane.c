@@ -509,6 +509,7 @@ find_other_le(shellptr thishell, fveptr currentfve, leptr thisle)
   return (Nil);
 }
 
+void
 make_shell_evfs(shellptr thishell)
 {
   fveptr thisfve,otherfve;
@@ -906,15 +907,16 @@ read_branch(FILE *infile, objptr parentobj)
 {
   objptr new_obj,thischild;
   int numobjs,i;
-  char branch_name[50],branch_motherworld_name[50];
+  char branch_name[50] = { 0 }, branch_motherworld_name[50] = { 0 };
   worldptr branch_world;
   ;
   /* Use the scratch world to read it in before merging it into the */
   /* requested world. */
   clear_world(scratch_world);
 
-  fscanf(infile,"Branch Name:%s\n",branch_name);
-  fscanf(infile,"Branch Preferred Motherworld:%s\n",branch_motherworld_name);
+  fscanf(infile, "Branch Name:%s\n", branch_name);
+  if (fscanf(infile,"Branch Preferred Motherworld:%s\n",branch_motherworld_name) < 1)
+    strcpy(branch_motherworld_name, "(none)");
   /* if branch_motherworld_name == "<none>" the preferred pointer will */
   /* be Nil */
   branch_world = find_world(branch_motherworld_name);

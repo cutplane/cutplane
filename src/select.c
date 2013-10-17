@@ -17,6 +17,7 @@
 
 #include <config.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
 
 #include <platform_gl.h>

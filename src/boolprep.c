@@ -59,6 +59,7 @@ find_correct_splitedge(evfptr oldsplitedge,vertype breakpos)
   while (searchforwards || searchbackwards)
   {
     if (searchforwards)
+    {
       if (pt_near_lineseg_3d(forwardle->facevert->pos,
 			     Twin_le(forwardle)->facevert->pos,
 			     breakpos,nearpt,&dummyt,Ptonlinetol))
@@ -72,7 +73,9 @@ find_correct_splitedge(evfptr oldsplitedge,vertype breakpos)
 	    ((Twin_le(Twin_le(forwardle->prev)->prev)) != forwardle))
 	  searchforwards = FALSE;
       }
+    }
     if (searchbackwards)
+    {
       if (pt_near_lineseg_3d(backle->facevert->pos,
 			     Twin_le(backle)->facevert->pos,
 			     breakpos,nearpt,&dummyt,Ptonlinetol))
@@ -86,8 +89,10 @@ find_correct_splitedge(evfptr oldsplitedge,vertype breakpos)
 	    ((Twin_le(Twin_le(backle->next)->next)) != backle))
 	  searchbackwards = FALSE;
       }
+    }
   }
   system_error("find_correct_splitedge: break edge search failure!!\n");
+  return 0; 			// We'll never get here... -- LJE
 }
 
   void

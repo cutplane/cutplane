@@ -54,6 +54,7 @@ bicoeff(int n, lattsizevec bc_array) /* generate binomial coefficients */
   bc_array[n] = 1.0;
 }
 
+void
 powers(Coord number, int maxpower, lattsizevec numpower)
 {		/* generate an array of powers from x^0 to x^maxpower */
   register int i;
@@ -63,10 +64,11 @@ powers(Coord number, int maxpower, lattsizevec numpower)
     numpower[i] = numpower[i-1] * number;
 }
 
+void
 set_controlpt_array(shellptr control_shell,
 		    vertype controlpts[][Ncontrolpts][Ncontrolpts])
 {
-  static interior_filled = FALSE;
+  static Boolean interior_filled = FALSE;
   vertype *temp;
   vertype diff;
   vertype maxpt;
@@ -271,6 +273,7 @@ evaluate(objptr control_obj, vfeptr thisvfe, Coord s, Coord t, Coord u)
 	  invxform);
 }
 
+void
 precompute_prods(xyzstruct *TxU, xyzstruct *UxS, xyzstruct *SxT,
 		 Coord *ToUxS, Coord *X0oTxU, Coord *X0oUxS, Coord *X0oSxT)
 {

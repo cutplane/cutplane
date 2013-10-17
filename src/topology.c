@@ -437,8 +437,7 @@ clear_world(worldptr thisworld)
 #ifndef FAST
 
   leptr
-Twin_le(thisle)
-  leptr thisle;
+Twin_le(leptr thisle)
 {
   if (thisle->facedge == Nil)
     return(thisle);
@@ -449,12 +448,8 @@ Twin_le(thisle)
 
 #endif /* FAST */
 
-  leptr
-new_le(next_le,thisevf,thisvfe,dir)
-  leptr next_le;
-  evfptr thisevf;
-  vfeptr thisvfe;
-  int dir;
+leptr
+new_le(leptr next_le, evfptr thisevf, vfeptr thisvfe, int dir)
 {
   leptr newle;
   ;
@@ -511,6 +506,10 @@ del_le(leptr thisle)
   }
   else if (thisle->next == thisle) /* single vertex loop */
   {
+    if (thisle->facedge->le1 == thisle)
+      thisle->facedge->le1 = Nil;
+    else
+      thisle->facedge->le2 = Nil;
     thisle->facedge = Nil;
     thisleprev = thisle;
   }
@@ -520,7 +519,7 @@ del_le(leptr thisle)
     thisle->next->prev = thisle->prev;
     thisleprev = thisle->prev;
     
-    if (lelist->first.le = thisle)
+    if (lelist->first.le == thisle)
       lelist->first.le = thisle->next;
     lelist->last.le = lelist->first.le->prev;
     lelist->numelems -= 1;
@@ -824,10 +823,12 @@ kill_obj_branch(objptr deleted_obj)
 }
 
   leptr
-make_edge_vert(le1,le2,pos) /* NOTE: le1 & le2 must point to the same vert!! */
-  leptr le1,le2;		/* le1 gets the new vertex, and the routine */
-  vertype pos;			/* returns an le going from the new vertex */
-{				/* to the old */
+make_edge_vert(leptr le1, leptr le2, vertype pos)
+  /* NOTE: le1 & le2 must point to the same vert!! */
+  /* le1 gets the new vertex, and the routine */
+  /* returns an le going from the new vertex */
+  /* to the old */
+{
   shellptr thishell;
   evfptr newevf;
   vfeptr newvfe;
@@ -872,8 +873,8 @@ make_edge_vert(le1,le2,pos) /* NOTE: le1 & le2 must point to the same vert!! */
 }
 
   void
-kill_edge_vert(le1,le2)	/* le1 & le2 point to same evf, le2->facevert stays */
-  leptr le1,le2;
+kill_edge_vert(leptr le1, leptr le2) /* le1 & le2 point to same evf,
+					le2->facevert stays */
 {
   leptr temple,le2prev;
   vfeptr doomedvfe,savedvfe;
@@ -910,8 +911,9 @@ kill_edge_vert(le1,le2)	/* le1 & le2 point to same evf, le2->facevert stays */
 }
 
   fveptr
-make_edge_face(le1,le2)		/* splits a face making a new edge and a */
-  leptr le1,le2;		/* new face, le1 will be part of the new face */
+make_edge_face(leptr le1, leptr le2)
+  /* splits a face making a new edge and a */
+  /* new face, le1 will be part of the new face */
 {
   fveptr thisfve;
   shellptr thishell;
@@ -986,11 +988,15 @@ make_edge_face(le1,le2)		/* splits a face making a new edge and a */
 }
 
   void
-kill_edge_face(le1,le2)		/* joins two faces and deletes common edge */
-  leptr le1,le2;		/* le1 and le2 must be in different faces */
-{				/* and point to the same edge, le2's face */
-  leptr temple,le2prev,le1prev;	/* is removed. le1 and le2 may point to */
-  boundptr sourcebound,destbound; /* the same facevert */
+kill_edge_face(leptr le1, leptr le2)
+  /* joins two faces and deletes common edge */
+  /* le1 and le2 must be in different faces */
+  /* and point to the same edge, le2's face */
+  /* is removed. le1 and le2 may point to */
+  /* the same facevert */
+{
+  leptr temple,le2prev,le1prev;
+  boundptr sourcebound,destbound;
   evfptr doomedevf;
   fveptr doomedfve;
   int numles = 0;
@@ -1048,9 +1054,11 @@ kill_edge_face(le1,le2)		/* joins two faces and deletes common edge */
 }
 
   leptr
-kill_ring_make_edge(le1,le2) /* merges two loops from the same face into one */
-  leptr le1,le2; /* this is done by connecting both loops with a single */
-{                /* edge, which then is traversed twice in the loop */
+kill_ring_make_edge(leptr le1, leptr le2)
+  /* merges two loops from the same face into one */
+  /* this is done by connecting both loops with a single */
+  /* edge, which then is traversed twice in the loop */
+{
   shellptr thishell;
   evfptr newevf;
   leptr temple,newle1,newle2;
@@ -1281,8 +1289,7 @@ break_edge_at_pos(leptr thisle,vertype pos)
 /* face. */
 
   void
-move_holes(oldface,newface)
-  fveptr oldface,newface;
+move_holes(fveptr oldface, fveptr newface)
 {
   boundptr thisbound,nextbound,outerbound;
   leptr thisle;
@@ -1335,9 +1342,7 @@ extrude_face(fveptr thisfve, vertype depth)
 }
 
   void
-extrude_faces(drawshellist,depth) /* meet george hacker */
-  listptr drawshellist;
-  vertype depth;
+extrude_faces(listptr drawshellist, vertype depth) /* meet george hacker */
 {
   shellptr thishell;
   ;
@@ -1458,10 +1463,12 @@ combine_loops(fveptr faceA, fveptr faceB, Boolean killbehind)
       killbehindle = thisleB->next;
     kill_edge_face(Twin_le(thisleB),thisleB);
     if (killbehind)
+    {
       if (killbehindle->next == Twin_le(killbehindle)) /* this is a strut */
 	kill_edge_vert(killbehindle->next,killbehindle);
       else
 	kill_edge_face(Twin_le(killbehindle),killbehindle);
+    }
     thisleB = nextle;
   }
   if (killbehind)
@@ -1741,7 +1748,8 @@ delete_vertex(leptr thisle)
   {
     nextle = Twin_le(thisle)->next;
 
-    /* if this face has more than three verts or thisle is a strut, make edge */
+    /* if this face has more than three verts or thisle is a strut,
+       make edge */
     if (thisle->motherbound->lelist->numelems > 3)
       make_edge_face(thisle->prev,thisle->next);
     thisle = nextle;
@@ -1895,6 +1903,9 @@ find_largergrain(featureptr smallfeature,int larger_type)
   case Obj_type:
     return((featureptr) themotherobj);
   }
+
+  // This should never happen -- LJE
+  return 0;
 }
 
 

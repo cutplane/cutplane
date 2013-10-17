@@ -101,6 +101,7 @@ find_noncollinear_le(leptr ref_le, int direction)
     } while (thisle != ref_le);
   }
   system_error("find_noncollinear_le: no noncollinear les found");
+  return 0;			// this will never be reached
 }
 
 /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
@@ -275,19 +276,19 @@ pt_to_line_dist_3d(vertype testpt,vertype pt1,vertype pt2)
   ;
   diffpos3d(pt1,pt2,fgh);
   denom = fgh[vx]*fgh[vx] + fgh[vy]*fgh[vy] + fgh[vz]*fgh[vz];
+
   if (divide_by_zero(denom))
     system_error("pt_to_line_dist_3d: denominator near zero!");
-  else
-  {
-    normalize(fgh,fgh);
-    t = fgh[vx]*(testpt[vx] - pt1[vx]) +
-      fgh[vy]*(testpt[vy] - pt1[vy]) +
-	fgh[vz]*(testpt[vz] - pt1[vz]);
-    nearpt[vx] = pt1[vx] + t * fgh[vx];
-    nearpt[vy] = pt1[vy] + t * fgh[vy];
-    nearpt[vz] = pt1[vz] + t * fgh[vz];
-    return(distance(testpt,nearpt));
-  }
+
+  normalize(fgh,fgh);
+  t = fgh[vx]*(testpt[vx] - pt1[vx]) +
+    fgh[vy]*(testpt[vy] - pt1[vy]) +
+    fgh[vz]*(testpt[vz] - pt1[vz]);
+  nearpt[vx] = pt1[vx] + t * fgh[vx];
+  nearpt[vy] = pt1[vy] + t * fgh[vy];
+  nearpt[vz] = pt1[vz] + t * fgh[vz];
+
+  return (distance(testpt,nearpt));
 }
 
 /* Compute distance between a point and a plane. Programmer's Geometry p 107 */
@@ -1663,6 +1664,7 @@ linesegs_intersect_3d(vertype pt1,vertype pt2,vertype pt3,vertype pt4,
   ;
   /* should use bbox test on linesegs here first */
   if (lineseg_bbox_intersect(pt1,pt2,pt3,pt4))
+  {
     if ((result = lines_intersect_3d(pt1,pt2,pt3,pt4,intrpt,t1,t2,tol)) ==
 	(int) Linesintersect)
     {
@@ -1671,7 +1673,10 @@ linesegs_intersect_3d(vertype pt1,vertype pt2,vertype pt3,vertype pt4,
       return((int) Linesegsintersect);
     }
     else if (result == (int) Linesequal)
+    {
       return((int) Linesegsequal);
+    }
+  }
   return((int) Linesegsdonotintersect);
 }
 

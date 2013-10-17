@@ -17,6 +17,7 @@
 
 #include <config.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
 
 #include <platform_gl.h>
@@ -2989,11 +2990,11 @@ draw_scalebbox_technique(objptr scalebbox,stateptr state)
       pickstatus = has_property((featureptr) thisevf, picked_prop);
       draw_bbox_also |= pickstatus;
       addpos3d(thisevf->cutpt,cutoffset,pos1);
-      if (selectable_check = has_property((featureptr) thisevf,selectable_prop))
-	draw_shadowed_pick_box(pos1,yellow,
-			       pickstatus);
+      if ((selectable_check = has_property((featureptr) thisevf,
+					   selectable_prop)) != 0)
+	draw_shadowed_pick_box(pos1, yellow, pickstatus);
       else
-	draw_shadowed_pick_box(pos1,lightgrey, pickstatus);
+	draw_shadowed_pick_box(pos1, lightgrey, pickstatus);
       draw_bbox_also |= selectable_check;
     }
     thisevf = thisevf->next;

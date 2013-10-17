@@ -652,10 +652,9 @@ insert_new_elem(the_list,next_elem,type_id,firstfield) /* insert an element */
 }
 
   elemptr
-append_new_elem(the_list,type_id,firstfield) /* appends an elem of type */
-  listptr the_list;		/* type_id to the given linked list filling */
-  int type_id;			/* in its fields */
-  long firstfield;
+append_new_elem(listptr the_list, int type_id, long firstfield)
+  /* Appends an elem of type type_id to the given linked list filling
+     in its fields */
 {
   elemptr old_last_elem,new_elem;
   ;

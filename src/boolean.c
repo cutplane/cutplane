@@ -1312,12 +1312,14 @@ isa_hole(leptr thisle)
 	  thisle->motherbound->motherfve->boundlist->first.bnd);
 }
 
+  Boolean
 inward_nullstrutle(leptr thisle)
 {
   /* the strut points towards the boundary */
   return (thisle->prev->facevert == thisle->next->facevert);
 }
 
+  Boolean
 outward_nullstrutle(leptr thisle)
 {
   /* the strut points away from the boundary */

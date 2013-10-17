@@ -319,7 +319,7 @@ draw_plus_cursor(objptr cursor_obj)
   setpos3d(pluspts[7],centerpt[vx], centerpt[vy] - crosshairwidth,
 	   centerpt[vz]);
 
-  if (drawflags & Drawroom != 0)
+  if ((drawflags & Drawroom) != 0)
   {
     if (pluspts[0][vx] < Mincrossx)
       pluspts[0][vx] = Mincrossx;

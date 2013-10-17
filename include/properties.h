@@ -18,8 +18,6 @@
 
 #include "list.h"
 
-#include <stdint.h>
-
 
 /* This id# starts at 200 to avoid colliding with those in list.h and */
 /* topology.h */
@@ -30,7 +28,7 @@
 #define Maxpossibleproperty 500   /* the most possible props including */
 				   /* dynamic ones. */
 
-typedef uint64_t property;		// 64bit fix -- LJE
+typedef int property;   // Hmm does this need to be 64bit? -- LJE
 #define Maxproperty Maxpossibleproperty
 #define Maxpropertynamelen 40
 

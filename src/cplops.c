@@ -31,7 +31,6 @@
 #include <intersect.h>
 
 #include <math3d.h>
-#include <stdint.h>
 
 /* -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
 /*   	                       GLOBAL VARIABLES				     */
@@ -388,8 +387,8 @@ execute_ADD(listptr world_list,stateptr state)
     {
       setup_CPL_auxword(&AR,CPLaux_address_data);
       AR.word_data.CPLauxdata.CPLaddressdata = (void *)
-	((uint64_t) (AS.word_data.CPLauxdata.CPLaddressdata) +
-	 (uint64_t) (AT.word_data.CPLauxdata.CPLaddressdata));
+	((addr_sized_uint) (AS.word_data.CPLauxdata.CPLaddressdata) +
+	 (addr_sized_uint) (AT.word_data.CPLauxdata.CPLaddressdata));
     }
   }
   else

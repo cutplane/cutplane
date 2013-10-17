@@ -19,6 +19,7 @@
 
 #include <platform_gl.h>
 #include <stdio.h>		/* for print statements debug hack */
+#include <stdlib.h>		// For abs()
 
 #include <cutplane.h>
 

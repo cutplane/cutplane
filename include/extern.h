@@ -165,7 +165,9 @@ extern void boolean_preprocess(shellptr shellA,shellptr shellB,
 
 
 extern listptr do_boolean(objptr objA, objptr objB, int operation);
-
+extern void init_facepair_lists(facepairptr thisfacepair) ;
+extern void copy_facepair_elem(facepairptr sourcefacepair, facepairptr destfacepair);
+extern void delete_facepair_lists(facepairptr thisfacepair);
 
 /****** externs for globals.c variables *****/
 extern long drawflags;
@@ -474,12 +476,13 @@ extern void addcolors(colortype color1, colortype color2, colortype resultcolor)
 extern void multcolors(colortype color1, colortype color2,
 		       colortype resultcolor);
 extern void toggle_zbuffering(void);
+extern void normal_zbuffer(void);
 extern Boolean backface_fve(fveptr);
 extern Boolean edge_is_hidden(evfptr thisevf, Boolean fve1_facesback,
 			      Boolean fve2_facesback);
 
 extern void def_environment_colors(void);
-
+extern void init_projmatrix(void);
 extern void map2screen(vertype thept,screenpos screenpt,Boolean compute_mapping);
 
 extern void object_defs(void);
@@ -817,6 +820,7 @@ extern void add_child(objptr parent, objptr child);
 extern objptr remove_obj(objptr removed_obj);
 extern void adopt_obj_branch(objptr master,objptr slave,
 			      Boolean linked);
+extern void adopt_obj(objptr master,objptr slave,Boolean linked);
 extern void get_obj_shells(objptr this_obj,listptr cull_list);
 extern void get_descendents(objptr this_obj,objptr mother_obj,
 			    listptr cull_list);
@@ -1152,6 +1156,7 @@ extern void init_bound_lists(boundptr);
 extern void delete_bound_lists(boundptr);
 extern void init_ring_lists(ringptr);
 extern void delete_ring_lists(ringptr);
+extern void init_obj_lists(objptr newobj);
 extern void delete_vv_lists(vvptr);
 extern void delete_vf_lists(vfptr);
 extern featureptr find_largergrain(featureptr,int);
@@ -1159,12 +1164,32 @@ extern fveptr find_face_given_normal(objptr thisobj, vertype searchnorm);
 extern Boolean find_les_same_face(leptr *le1,leptr *le2);
 extern Boolean find_les_same_face_same_vfes(leptr *le1,leptr *le2);
 extern Boolean find_les_same_face_walking(leptr *le1,leptr *le2);
+extern void init_world_lists(worldptr neworld);
+extern void init_curve_lists(curveptr newcurve);
+extern void init_surf_lists(surfptr newsurf);
+
+extern void delete_obj_lists(objptr thisobj);
+extern void delete_world_lists(worldptr thisworld);
+extern void delete_curve_lists(curveptr thiscurve);
+extern void delete_surf_lists(surfptr thisurf);
+
+extern void copy_shell_elem(shellptr sourceshell, shellptr destshell);
+extern void copy_obj_elem(objptr sourceobj, objptr destobj);
+extern void copy_world_elem(worldptr sourceworld, worldptr destworld);
+extern void copy_ring_elem(ringptr sourcering, ringptr destring);
+extern void copy_fve_elem(fveptr sourcefve, fveptr destfve);
+extern void copy_bound_elem(boundptr sourcebound, boundptr destbound);
+extern void copy_curve_elem(curveptr sourcecurve, curveptr destcurve);
+extern void copy_surf_elem(surfptr sourcesurf, surfptr destsurf);
 
 /****** externs for transform.c routines *****/
 
-extern void transformpt(vertype,Matrix,vertype);
-extern void transformpts(long, vertype, Matrix, vertype);
-extern void transform_shell(shellptr,Matrix);
+extern void permanent_transform_obj(objptr thisobj);
+extern void transformpt(Coord *thept, Matrix xform, Coord * xformedpt);
+extern void transformpts(long npts, Coord *pts, Matrix xform, Coord *xformedpts);
+extern void transform_shell(shellptr thishell, Matrix xformatrix);
+extern void transform_shell_reverse(shellptr thishell, Matrix invxform);
+
 #ifdef IRIS
 extern void transform_shells();
 #endif
@@ -1406,6 +1431,8 @@ extern void pop_off_CPL_stack(listptr this_CPL_stack,CPL_word_ptr pop_CPL_word,
 			      Boolean clear_target);
 extern void push_on_CPL_controlstack(CPL_word_ptr push_CPL_controlword);
 extern void pop_off_CPL_controlstack(CPL_word_ptr pop_CPL_controlword);
+extern void push_owner_stack(void) ;
+extern void pop_owner_stack(void);
 extern Boolean CPL_queue_empty(listptr this_CPL_queue);
 extern listptr create_CPL_queue(void);
 extern Boolean CPL_queue_empty(listptr this_CPL_queue);
@@ -1603,8 +1630,10 @@ extern void read_CPLcode_into_rom(char *rom_filename);
 extern void read_CPLcode_into_ram(char *ram_filename);
 extern void read_CPLcode_into_property(char *ram_filename);
 extern void read_CPL_privatecode(char *ram_filename,featureptr known_owner);
-extern void read_CPL_properfile(char *property_name);
+extern void read_CPL_propfile(char *property_name);
 extern void read_CPL_propfiles(void);
+extern void resolve_CPL_forward_defs(void);
+extern void resolve_CPL_forward_object_refs(void);
 
 extern void store_CPL_RAM_word(CPL_word_ptr);
 extern void store_simple_RAM_instruction(opcodekind theopcode);

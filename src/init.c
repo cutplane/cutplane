@@ -286,7 +286,7 @@ read_window_resource_files()
 }
 
 
-long
+void
 init_main_window()
 {
 
@@ -316,6 +316,7 @@ init_main_window()
 
 // Turn off the 2d OS cursor
   glutSetCursor(GLUT_CURSOR_NONE);
+
 }
 
 
@@ -659,7 +660,7 @@ init_grafx(void)
   ;
   read_window_resource_files();
 
-  mainwindow = init_main_window();
+  init_main_window();
 
   init_projmatrix();
 

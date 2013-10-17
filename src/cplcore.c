@@ -849,10 +849,12 @@ CPL_resolver(listptr world_list,stateptr state,
     /* final results place, if there is one.  If no iteration at all, */
     /* just copy the results to the final results place, if there is one. */
     if (results_word != Nil)
+    {
       if (lead_iterator == Noaccumulator)
 	copy_wordA_to_wordB(&AR,results_word);
       else
 	add_wordA_to_wordB(&AR,results_word);
+    }
 /*    clear_word(&AR);*/
 
   } while (still_iterating);
