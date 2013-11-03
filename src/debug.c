@@ -44,9 +44,9 @@ FILE *dbgdump;
 /*                         WINDOZE DEBUG ROUTINES                           */
 /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
 
-void init_dbgdump(char *dbgdump_filename)
+void init_dbgdump(const char *dbgdump_filename)
 {
-  dbgdump = fopen (dbgdump_filename, "w");
+  dbgdump = fopen(dbgdump_filename, "w");
 }
 
 void close_dbgdump()
