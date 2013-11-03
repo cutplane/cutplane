@@ -2002,13 +2002,13 @@ del_extra_shells(worldptr world)
 do_boolean(objptr objA, objptr objB, int operation)
 {
   listptr vv_list = create_list(), vf_list = create_list();
-  listptr null_lelist = create_list(), sorted_null_lelist;
+  listptr null_lelist = create_list(), sorted_null_lelist = 0;
   listptr infacesA, outfacesA = create_list();
   listptr infacesB, outfacesB = create_list();
   listptr resultlist = create_list();
-  elemptrptr thisresult;
-  shellptr shellA,shellB,thishell;
-  objptr newobjA,newobjB;
+  elemptrptr thisresult = 0;
+  shellptr shellA= 0, shellB = 0,thishell = 0;
+  objptr newobjA = 0, newobjB = 0;
   colortype objAcolor;
   ;
   if (objA->motherworld != objB->motherworld)
@@ -2032,9 +2032,12 @@ do_boolean(objptr objA, objptr objB, int operation)
   shellA = objA->shellist->first.shell;
   while ((shellA != Nil) && (shellA == objA->shellist->first.shell))
   {
+    shellptr nextShellA = shellA->next;
     shellB = objB->shellist->first.shell;
     while ((shellB != Nil) && (shellB == objB->shellist->first.shell))
     {
+      shellptr nextShellB = shellB->next;
+      
       clear_property(touched_prop);   /* make sure nothing is Touched to start */
 
       ensure_hole_orientations(shellA);
@@ -2052,6 +2055,8 @@ do_boolean(objptr objA, objptr objB, int operation)
       /* add null le's to objs and record them in the null_lelist's */
       add_all_null_edges_boolean(vv_list,vf_list,null_lelist);
       
+      // Note: sort_null_lelist() deletes null_list, so we must
+      // re-allocate it each iteration.
       sorted_null_lelist = sort_null_lelist(null_lelist);
       make_null_faces_boolean(sorted_null_lelist);
       
@@ -2060,6 +2065,7 @@ do_boolean(objptr objA, objptr objB, int operation)
       
       consolidate_null_faces_boolean(sorted_null_lelist,outfacesA,outfacesB);
       
+      // NOTE: separate_pieces_boolean() kills the shell!
       infacesA = separate_pieces_boolean(shellA,outfacesA);
       infacesB = separate_pieces_boolean(shellB,outfacesB);
       
@@ -2076,29 +2082,34 @@ do_boolean(objptr objA, objptr objB, int operation)
 
       clear_list(vv_list);
       clear_list(vf_list);
-      clear_list(null_lelist);
+      // null_lelist was killed above, need a new list for the next
+      // iteration:
+      null_lelist = create_list();
       clear_list(sorted_null_lelist);
       clear_list(outfacesA);
       clear_list(outfacesB);
       del_list(infacesA);
       del_list(infacesB);
-      shellB = shellB->next;
+      shellB = nextShellB;
     }
-    shellA = shellA->next;
+    shellA = nextShellA;
   }
   if (operation == BOOL_Subtraction)	/* wee hack to go along with previous dup hack */
   {
     kill_obj(objB);
     objB = Nil;			/* ok?! */
+
+    // Update objA and add it to the results list
+    log_update((featureptr) objA,Allupdateflags,Immediateupdate);
+    find_obj_normals(objA);	/* hackkkkkkkkkkkkkkkk */
+    get_feature_color((featureptr) objA, objAcolor);
+    thisresult = (elemptrptr) append_new_blank_elem(resultlist,Ep_type);
+    thisresult->thiselem = (elemptr) objA;
+
     /* objA could have multiple shells now...make them into objects */
     /* this should really check for containment of one shell in another */
     /* and only make objects out of shells that are not inside others */
     thishell = objA->shellist->first.shell->next; /* leave 1 shell in A */
-    thisresult = (elemptrptr) append_new_blank_elem(resultlist,Ep_type);
-    thisresult->thiselem = (elemptr) objA;
-    log_update((featureptr) objA,Allupdateflags,Immediateupdate);
-    find_obj_normals(objA);	/* hackkkkkkkkkkkkkkkk */
-    get_feature_color((featureptr) objA, objAcolor);
     while (thishell)
     {
       newobjA = make_childobj_noshell(objA->parent);
