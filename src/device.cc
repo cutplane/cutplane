@@ -5,6 +5,7 @@
 
 #include <platform_glut.h>
 
+#include <cstdio>
 #include <iostream>
 
 using namespace std;
@@ -188,6 +189,7 @@ getvaluator(Device val)
     cout << "getvaluator(MOUSEY) = " << deviceState.mouseY << endl;
     return (glutGet(GLUT_WINDOW_HEIGHT) - 1) - deviceState.mouseY;
   }
+  return 0;
 }
 
 extern "C"
