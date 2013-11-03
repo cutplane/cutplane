@@ -28,7 +28,21 @@
 #define Maxpossibleproperty 500   /* the most possible props including */
 				   /* dynamic ones. */
 
-typedef int property;   // Hmm does this need to be 64bit? -- LJE
+// We sometimes pass a property as if it were an address (e.g., in
+// apply_to_descendants()) so make sure it's the same size as an
+// address. Probably not necessary, but get's rid of a warning. -- LJE
+// See similar typedefs in cpl_cutplane.h, should combine and put in
+// config.h!
+#ifdef __SIZEOF_POINTER__     // GCC & CLANG define __SIZEOF_POINTER__
+#if __SIZEOF_POINTER__ == 8
+typedef int64_t property;
+#else
+typedef int32_t property;
+#endif
+#else  // Otherwise just assume 64 bit...
+typedef int32_t property;
+#endif
+
 #define Maxproperty Maxpossibleproperty
 #define Maxpropertynamelen 40
 
