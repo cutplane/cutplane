@@ -16,6 +16,7 @@
 #include <config.h>
 #include <math.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #include <platform_gl.h>
 
@@ -165,6 +166,7 @@ ps_closepath(void)
   fprintf(psfile,"closepath\n");
 }
 
+void
 ps_currentpoint(void)
 {
   fprintf(psfile,"currentpoint\n");
