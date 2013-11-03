@@ -31,7 +31,9 @@
 
 #define Newflashmargin 0.25
 #define Edgeselectcoloroffset 30
+#ifndef Pi
 #define Pi 3.141592654
+#endif
 #define Maxacostable 1000
 
 #define Selectableoffsetscale 3.0
