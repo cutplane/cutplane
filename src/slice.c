@@ -418,7 +418,7 @@ prune_consecutive_transitions(listptr transitionlist, stateptr state)
       else			/* front-on-front & front-on-back cases */
 	set_property(thistransition, thislocation_prop,Inback);
       /* can do the following since we already handled onplane sectors */
-      set_property(prevtransition, nextlocation_prop,
+      set_any_property(prevtransition, nextlocation_prop,
 			 get_property_val((elemptr) thistransition,
 					    thislocation_prop));
     }
@@ -443,7 +443,7 @@ prune_consecutive_transitions(listptr transitionlist, stateptr state)
       else			/* front-on-front & front-on-back cases */
 	set_property(thistransition, nextlocation_prop,Inback);
       /* can do the following since we already handled onplane sectors */
-      set_property(nextransition, thislocation_prop,
+      set_any_property(nextransition, thislocation_prop,
 			 get_property_val((elemptr) thistransition,
 					    nextlocation_prop));
     }
