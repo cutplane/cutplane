@@ -254,10 +254,7 @@ setfnorm_local(fveptr thisfve, vertype newfnorm)
 /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
 
   static void
-quicksort_engine(vertlist,axis,numvfes,pivotvfe)
-  register listptr vertlist;
-  register int axis,numvfes;
-  vfeptr pivotvfe;
+quicksort_engine(listptr vertlist, int axis, int numvfes, vfeptr pivotvfe)
 {
   register int numvfes1 = 0, numvfes2 = 0;
   register float pivotpos;
