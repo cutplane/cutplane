@@ -62,8 +62,8 @@
 */
 
 
-char *className = "3Form";
-char *windowName = "3Form";
+const char className[] = { "3Form" };
+const char windowName[] = { "3Form" };
 
 // FIXE ME -- LJE
 // HDC hDC;
