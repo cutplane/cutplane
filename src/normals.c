@@ -30,6 +30,7 @@
 #include <math3d.h>
 
 
+void
 flip_bound_orientation(boundptr thisbound)
 {
   fveptr thisfve;
@@ -290,6 +291,7 @@ sameside(vertype othervec[], vertype norm)
   return(1);
 }
 
+void
 fix_direction(vertype facenorm[], vertype othervec[])
 {
   static vertype y_vec = {0.0,1.0,0.0,0.0};
