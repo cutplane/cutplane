@@ -488,37 +488,41 @@ new_le(leptr next_le, evfptr thisevf, vfeptr thisvfe, int dir)
   return(newle);
 }
 
-  leptr
+leptr
 del_le(leptr thisle)
 {
   leptr thisleprev;
   listptr lelist;
   ;
   lelist = thisle->motherbound->lelist;
-  if (thisle->facedge == Nil)	/* single vertex no loop */
+  if (thisle->next == thisle) // Single vertex boundary
   {
-    lelist->first.le = Nil;
-    lelist->last.le = Nil;
-    lelist->numelems = 0;
-    thisleprev = Nil;
-    clear_feature_properties((featureptr) thisle);
-    free_elem((elemptr *) &thisle);
+    if (thisle->facedge == Nil)	// Single vertex no loop: 1 face, 1 vertex, 0 edges
+    {
+      lelist->first.le = Nil;
+      lelist->last.le = Nil;
+      lelist->numelems = 0;
+      thisleprev = Nil;
+      clear_feature_properties((featureptr) thisle);
+      free_elem((elemptr *) &thisle);
+      thisle = Nil;
+    }
+    else // Single vertex loop: 2 faces, 1 vertex, 1 edge
+    {
+      if (thisle->facedge->le1 == thisle)
+	thisle->facedge->le1 = Nil;
+      else
+	thisle->facedge->le2 = Nil;
+      thisle->facedge = Nil;
+      thisleprev = thisle;
+    }
   }
-  else if (thisle->next == thisle) /* single vertex loop */
-  {
-    if (thisle->facedge->le1 == thisle)
-      thisle->facedge->le1 = Nil;
-    else
-      thisle->facedge->le2 = Nil;
-    thisle->facedge = Nil;
-    thisleprev = thisle;
-  }
-  else				/* multiple vertex loop */
+  else				// Multiple vertex loop
   {
     thisle->prev->next = thisle->next;
     thisle->next->prev = thisle->prev;
     thisleprev = thisle->prev;
-    
+        
     if (lelist->first.le == thisle)
       lelist->first.le = thisle->next;
     lelist->last.le = lelist->first.le->prev;
@@ -526,7 +530,7 @@ del_le(leptr thisle)
     clear_feature_properties((featureptr) thisle);
     free_elem((elemptr *) &thisle);
   }
-
+    
   return(thisleprev);
 }
 
@@ -1238,10 +1242,7 @@ make_face_kill_loop(boundptr bound)
 }
 
   void
-move_loop(thisbound,destfve,outflag)
-  boundptr thisbound;
-  fveptr destfve;
-  int outflag;
+move_loop(boundptr thisbound, fveptr destfve, int outflag)
 {
   /* could unite shells if they are different */
   if (thisbound->motherfve->mothershell != destfve->mothershell)
