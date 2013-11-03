@@ -1197,10 +1197,12 @@ input_point(listptr drawshellist, stateptr state, actionptr new_action,
   else if (drawing)		/* we rubberband if too close to the last pt */
   {
     setcolor(thiscolor);
-	/* OGLXXX glBegin: Use GL_LINES if only one line segment is desired. */
-    glBegin(GL_LINE_STRIP); glVertex3f(lastpt[vx], lastpt[vy], lastpt[vz]);
-	/* OGLXXX Add glEnd() after these vertices,  before next glBegin() */
+    /* OGLXXX glBegin: Use GL_LINES if only one line segment is desired. */
+    glBegin(GL_LINES);
+    glVertex3f(lastpt[vx], lastpt[vy], lastpt[vz]);
+    /* OGLXXX Add glEnd() after these vertices,  before next glBegin() */
     glVertex3f(newpt[vx], newpt[vy], newpt[vz]);
+    glEnd();
   }
   return(Nonewpoint);
 }
