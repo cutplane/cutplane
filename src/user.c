@@ -63,8 +63,7 @@ double_clickp(oldstate,state)
 /* enforce_limits limits any state variables that need to be limited */
 
   static void
-enforce_limits(state)
-  stateptr state;
+enforce_limits(stateptr state)
 {
   if (state->roomroty > Maxroomroty) state->roomroty = Maxroomroty;
     else if (state->roomroty < Minroomroty) state->roomroty = Minroomroty;
