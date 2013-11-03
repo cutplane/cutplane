@@ -327,7 +327,8 @@ proplist_to_featurelist(listptr proplist)
     for (propelement = working_world->world_proplists[(int) theprop]->
 	 first.prop; propelement != Nil; propelement = propelement->next)
     {
-      newfeature_ep = (elemptrptr) append_new_elem(new_list,Ep_type);
+      long dummy;
+      newfeature_ep = (elemptrptr) append_new_elem(new_list,Ep_type, dummy);
       newfeature_ep->thiselem = propelement->owner;
     }
   }
