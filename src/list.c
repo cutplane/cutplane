@@ -63,9 +63,7 @@ int typesize[Maxnumtypes] = {Elemsize,Epsize,Delemsize,Oelemsize,Qelemsize,
 #ifndef FAST_N_SMART
 
   elemptr
-next_elem(thishead,thisptr)
-  listptr thishead;
-  elemptr thisptr;
+next_elem(listptr thishead, elemptr thisptr)
 {
   if (thisptr->next)
     return (thisptr->next);
@@ -73,9 +71,7 @@ next_elem(thishead,thisptr)
 }
 
   elemptr
-prev_elem(thishead,thisptr)
-  listptr thishead;
-  elemptr thisptr;
+prev_elem(listptr thishead, elemptr thisptr)
 {
   if (thisptr->prev)
     return (thisptr->prev);
@@ -85,9 +81,7 @@ prev_elem(thishead,thisptr)
 #endif /* FAST_N_SMART */
 
   int
-get_elem_index(the_elem,the_list)
-  elemptr the_elem;
-  listptr the_list;
+get_elem_index(elemptr the_elem, listptr the_list)
   /* returns the index of element pointed to by the_elem in the list */
   /* given by the_list. Returns 0 if the_elem not found. */
 {
@@ -106,9 +100,7 @@ get_elem_index(the_elem,the_list)
 }
 
   elemptr
-get_elem_ptr(i,the_list)
-  int i;
-  listptr the_list;
+get_elem_ptr(int i, listptr the_list)
   /* returns a pointer to item i of a list */
 {
   elemptr the_elem;
@@ -194,64 +186,78 @@ add_elem(listptr the_list, elemptr prev_elem, elemptr this_elem)
 }
 
   void
-insert_elem(thelist,nextelem,thelem) /* insert an existing element */
-  listptr thelist;		/* BEFORE a given element in a list */
-  elemptr nextelem,thelem;
+insert_elem(listptr thelist, elemptr nextelem, elemptr thiselem)
+  /* insert an existing element BEFORE a given element in a list */
 {
-  elemptr templast;
+  elemptr old_last_elem;
   ;
-  (thelist->numelems)++;
-  if (nextelem)
+  if (thiselem == Nil)
+    return;
+
+  thelist->numelems += 1;
+  if (nextelem)	  // This *assumes* nextelem is in thelist!
   {
-    thelem->next = nextelem;
-    thelem->prev = nextelem->prev;
+    thiselem->next = nextelem;
+    thiselem->prev = nextelem->prev;
     if (nextelem->prev)
-      nextelem->prev->next = thelem;
-    else
-      thelist->first.any = thelem;
-    nextelem->prev = thelem;
+      nextelem->prev->next = thiselem;
+    nextelem->prev = thiselem;
+    if (thelist->first.any == nextelem)
+      thelist->first.any = thiselem;
   }
-  else
+  else // We are "inserting" at the end... should just use append_elem! -- LJE
   {
-    templast = thelist->last.any;
-    thelist->last.any = thelem;
-    thelist->last.any->next = Nil;
-    thelist->last.any->prev = templast;
-    if (templast == Nil)
-      /* in case original list was empty point first ptr to new last ptr... */
-      thelist->first.any = thelist->last.any; 
+    old_last_elem = thelist->last.any;
+    if (old_last_elem == Nil)	// Empty list..
+    {
+      thelist->first.any = thelist->last.any = thiselem;
+      if (thelist->kind == Circular_list)
+	thiselem->prev = thiselem->next = thiselem;
+      else			// Normal_list
+	thiselem->prev = thiselem->next = Nil;
+    }
     else
-      templast->next = thelist->last.any;
+    {
+      thelist->last.any = thiselem;
+      thiselem->next = old_last_elem->next;
+      thiselem->prev = old_last_elem;
+      old_last_elem->next = thiselem;
+    }
   }
 }
 
 
   void
-append_elem(the_list,thiselem)	/* appends an existing element of type  */
-  listptr the_list;		/* type_id to the given linked list */
-  elemptr thiselem;
+append_elem(listptr the_list, elemptr thiselem)
+  /* appends an existing element of type  */
+  /* type_id to the given linked list */
 {
   elemptr old_last_elem;
   ;
+  if (thiselem == Nil)
+    return;
+
+  the_list->numelems += 1;
   old_last_elem = the_list->last.any;
-  if (old_last_elem)
+  if (old_last_elem == Nil)	// Empty list...
   {
-    old_last_elem->next = thiselem;
-    old_last_elem->next->prev = old_last_elem;
-    old_last_elem->next->next = Nil;
-    the_list->last.any = old_last_elem->next;
+    the_list->first.any = the_list->last.any = thiselem;
+    if (the_list->kind == Circular_list)
+      thiselem->prev = thiselem->next = thiselem;
+    else			// Normal_list
+      thiselem->prev = thiselem->next = Nil;
   }
   else
   {
-    the_list->first.any = thiselem;
-    the_list->first.any->prev = Nil;
-    the_list->first.any->next = Nil;
-    the_list->last.any = the_list->first.any;
+    the_list->last.any = thiselem;
+    thiselem->next = old_last_elem->next;
+    thiselem->prev = old_last_elem;
+    old_last_elem->next = thiselem;
   }
-  the_list->numelems += 1;
 }
 
-  void			/* remove element from list, element still exists */
+/* remove element from list, element still exists */
+  void
 rem_elem(listptr the_list,elemptr the_elem)
 {
   elemptr prev_elem,next_elem;
@@ -287,10 +293,9 @@ rem_elem(listptr the_list,elemptr the_elem)
 }
 
   void
-move_elem(the_list,the_elem,new_prev_elem) /* move an element to another */
-  register listptr the_list;           /* position in the SAME list */
-  register elemptr the_elem;
-  elemptr new_prev_elem;
+move_elem(register listptr the_list, register elemptr the_elem, elemptr new_prev_elem)
+  /* move an element to another */
+  /* position in the SAME list */
 {
   if (new_prev_elem == the_elem)
     system_error("move_elem: preceding element = the element");
@@ -315,8 +320,9 @@ move_elem(the_list,the_elem,new_prev_elem) /* move an element to another */
 int freecount = 0;
 
   elemptr  
-alloc_elem(elemsize)	/* return pointer to new list element */
-  int elemsize;		/* uses calloc so all bytes are zeroed. */
+alloc_elem(int elemsize)
+  /* return pointer to new list element */
+  /* uses calloc so all bytes are zeroed. */
 {
   register elemptr temp;
   ;
@@ -439,10 +445,7 @@ create_blank_elem(int type_id)
 }
 
   elemptr			/* insert new blank element in a list */
-add_new_blank_elem(the_list,prev_elem,type_id)
-  listptr the_list;
-  elemptr prev_elem;
-  int type_id;
+add_new_blank_elem(listptr the_list, elemptr prev_elem, int type_id)
 {
   elemptr new_elem,tempfirst;
   ;
@@ -453,9 +456,9 @@ add_new_blank_elem(the_list,prev_elem,type_id)
 }
 
   elemptr
-insert_new_blank_elem(the_list,next_elem,type_id)
-  listptr the_list;		/* insert a new blank element */
-  elemptr next_elem;		/* BEFORE a given element in a list */
+insert_new_blank_elem(listptr the_list, elemptr next_elem, int type_id)
+  /* insert a new blank element */
+  /* BEFORE a given element in a list */
 {
   elemptr new_elem;
   ;
@@ -466,9 +469,9 @@ insert_new_blank_elem(the_list,next_elem,type_id)
 }
 
   elemptr
-append_new_blank_elem(the_list,type_id) /* appends a blank elem of type  */
-  listptr the_list;		/* type_id to the given linked list */
-  int type_id;
+append_new_blank_elem(listptr the_list, int type_id)
+  /* appends a blank elem of type  */
+  /* type_id to the given linked list */
 {
   elemptr new_elem;
   ;
@@ -478,9 +481,10 @@ append_new_blank_elem(the_list,type_id) /* appends a blank elem of type  */
   return(new_elem);
 }
 
+ /* copys fields and lists of one elem into another */
   void
 copy_elem(elemptr sourcelem, elemptr destelem)
-{ /* copys fields and lists of one elem into another */
+{
   char errormsg[128];
   listptr destproplist;
   ;
@@ -572,19 +576,18 @@ copy_elem(elemptr sourcelem, elemptr destelem)
 
   elemptr
 clone_elem(elemptr original)
-{ /* returns a copy,byte for byte, of the original list element */
+{ /* returns a copy, byte for byte, of the original list element */
   elemptr new_elem;
+  long dummy;
   ;
-  new_elem = create_elem(original->type_id);
+  new_elem = create_elem(original->type_id, dummy);
   copy_elem(original,new_elem);
 
   return (new_elem);
 }
 
   void
-set_elem_fields(new_elem,firstfield) /* assumes type_id has been set */
-  elemptr new_elem;
-  long *firstfield;
+set_elem_fields(elemptr new_elem, long int *firstfield) /* assumes type_id has been set */
 {
   switch (new_elem->type_id)
   {
@@ -607,9 +610,7 @@ set_elem_fields(new_elem,firstfield) /* assumes type_id has been set */
 }
 
   elemptr
-create_elem(type_id,firstfield)
-  int type_id;
-  long firstfield;
+create_elem(int type_id, long int firstfield)
 {
   elemptr new_elem,tempfirst;
   ;
@@ -620,11 +621,8 @@ create_elem(type_id,firstfield)
 }
 
   elemptr
-add_new_elem(the_list,prev_elem,type_id,firstfield) /* insert an element */
-  listptr the_list;		/* in a list, setting its fields */
-  elemptr prev_elem;
-  int type_id;
-  long firstfield;
+add_new_elem(listptr the_list, elemptr prev_elem, int type_id, long int firstfield)
+  /* insert an element in a list, setting its fields */
 {
   elemptr new_elem,tempfirst;
   ;
@@ -636,11 +634,8 @@ add_new_elem(the_list,prev_elem,type_id,firstfield) /* insert an element */
 }
 
   elemptr
-insert_new_elem(the_list,next_elem,type_id,firstfield) /* insert an element */
-  listptr the_list;		/* in a list, setting its fields */
-  elemptr next_elem;
-  int type_id;
-  long firstfield;
+insert_new_elem(listptr the_list, elemptr next_elem, int type_id, long int firstfield)
+  /* insert an element in a list, setting its fields */
 {
   elemptr new_elem,tempfirst;
   ;
@@ -885,45 +880,45 @@ kill_elem(void *this_elem)	/* wipe out an elem not associated with a list */
 /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
 
   listptr
-create_list()                       /* Create an empty list */
+create_list(void)                       /* Create an empty list */
 {
   register listptr new_list;
   ;
-  
   new_list = (listptr) alloc_elem(Listsize);
   /* alloc_elem uses calloc so: # of elems is 0, last and first point to Nil */
   /* and the list_kind is Normal_list */
   if (new_list == Nil)
     system_error("create_list: out of memory!");
 
+  new_list->kind = Normal_list;
+
   return (new_list);
 }
 
   listptr
-create_circular_list()		/* Create an empty circular list */
+create_circular_list(void)		/* Create an empty circular list */
 {
   register listptr new_list;
   ;
-  
   new_list = (listptr) alloc_elem(Listsize);
   /* alloc_elem uses calloc so: # of elems is 0, last and first point to Nil */
-  new_list->kind = Circular_list;
   if (new_list == Nil)
     system_error(" create_list: out of memory!");
+
+  new_list->kind = Circular_list;
 
   return (new_list);
 }
 
   void
-clear_list(the_list)		/* deletes list but not its head */
-  listptr the_list;
+clear_list(listptr the_list)		/* deletes list but not its head */
 {
   while (the_list->numelems > 0) /* stop on # elem's in case of circ. list */
     del_elem(the_list,the_list->first.any);
 }
+
   void
-del_list(the_list)		/* deletes list and its head */
-  listptr the_list;
+del_list(listptr the_list)		/* deletes list and its head */
 {
   while (the_list->numelems > 0) /* stop on # elem's in case of circ. list */
     del_elem(the_list,the_list->first.any);
