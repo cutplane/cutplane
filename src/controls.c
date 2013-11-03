@@ -22,6 +22,9 @@
 #include <platform_gl.h>
 #include <platform_glu.h>
 
+#undef getvaluator
+#undef setvaluator
+
 #include "device.h"
 
 #include <cutplane.h>		/* cutplane.h includes controls.h */
@@ -37,8 +40,6 @@
 #define even(n) (~(n & 0x1))
 #define odd(n) (n & 0x1)
 
-#undef getvaluator
-#undef setvaluator
 
 /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
 /*			GLOBAL VARIABLES				*/
@@ -435,7 +436,7 @@ init_valuatorec(int thevaluator,Device thedev,int initialvalue,
   valuatorecs[thevaluator].scanmax = scanrangemax;
   valuatorecs[thevaluator].scanrange = scanrangemax - scanrangemin;
   valuatorecs[thevaluator].mustuselastscan = FALSE;
-  setvaluator(thedev,initialvalue,minrange,maxrange);
+  setvaluator(thedev, (short) initialvalue, (short) minrange, (short) maxrange);
 }
 
 /* To use different valuators rather than the mouse, you just change */
